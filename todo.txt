@@ -1,0 +1,10 @@
+remove dot indicators at the bottom
+make html, script, and css separate files
+make each section full screen, not the weird windowed thing going on right now
+fix about me page's subsections to look like the screenshot
+make the arrows under the projects section rotate with at least 5 sample projects (circularly, such that if i am at the end of the cycle it goes to the first one)
+modify the home page to use the image for linkedin,  github, and mail rather than symbols right now
+modify the laptop that says software developer, student to be a static image
+modify the icons at the about me section to be the orignal images in the screenshot. you may leave them blank for now with sample names for the srcs like onshapeLogo.png
+change the project sample's emojis to images such that they can be replaced with the logos of the coding langauges of the projects. 
+make the job description bubble slightly grow in size when the mouse hovers over it

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snap Scrolling with Weak Magnetism</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+            height: 100vh;
+            scroll-behavior: smooth;
+        }
+        
+        .section {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            font-size: 1.5rem;
+            max-width: 600px;
+        }
+        
+        .section:nth-child(1) {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+        }
+        
+        .section:nth-child(2) {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+        
+        .section:nth-child(3) {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+        }
+        
+        .section:nth-child(4) {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+        }
+        
+        .scroll-indicator {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .indicator.active {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="section" id="section1">
+        <h1>Section One</h1>
+        <p>Scroll down to explore more sections. The page will softly snap into place when you stop scrolling.</p>
+    </div>
+    
+    <div class="section" id="section2">
+        <h1>Section Two</h1>
+        <p>Notice how the scrolling feels natural until you release, then it gently snaps to the nearest section.</p>
+    </div>
+    
+    <div class="section" id="section3">
+        <h1>Section Three</h1>
+        <p>You can scroll freely, but when you stop, the magnetism effect takes over.</p>
+    </div>
+    
+    <div class="section" id="section4">
+        <h1>Section Four</h1>
+        <p>The final section. Try scrolling back up to experience the effect again!</p>
+    </div>
+    
+    <div class="scroll-indicator">
+        <div class="indicator active" data-section="section1"></div>
+        <div class="indicator" data-section="section2"></div>
+        <div class="indicator" data-section="section3"></div>
+        <div class="indicator" data-section="section4"></div>
+    </div>
+    
+    <script>
+        // Variables to track scrolling state
+        let isScrolling = false;
+        let scrollTimer = null;
+        let sections = [];
+        let indicators = [];
+        let currentSection = 0;
+        
+        // Initialize everything when the page loads
+        window.addEventListener('load', initialize);
+        
+        function initialize() {
+            getSections();
+            setupIndicators();
+            
+            // Set up event listeners
+            window.addEventListener('scroll', handleScroll);
+            window.addEventListener('touchmove', handleScrollStart);
+            window.addEventListener('wheel', handleScrollStart);
+            window.addEventListener('resize', handleResize);
+            
+            // Initial update of indicators based on starting position
+            updateIndicators(getCurrentSection());
+        }
+        
+        function getSections() {
+            sections = Array.from(document.querySelectorAll('.section'));
+            indicators = Array.from(document.querySelectorAll('.indicator'));
+        }
+        
+        function setupIndicators() {
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => scrollToSection(index));
+            });
+        }
+        
+        function updateIndicators(index) {
+            currentSection = index;
+            
+            indicators.forEach((indicator, i) => {
+                if (i === index) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+        
+        function scrollToSection(index) {
+            if (index < 0 || index >= sections.length) return;
+            
+            const targetPosition = index * window.innerHeight;
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        }
+        
+        function getCurrentSection() {
+            const scrollPosition = window.scrollY;
+            const viewportHeight = window.innerHeight;
+            
+            // Calculate which section is most visible
+            const sectionIndex = Math.round(scrollPosition / viewportHeight);
+            
+            // Ensure index is within bounds
+            return Math.max(0, Math.min(sectionIndex, sections.length - 1));
+        }
+        
+        function handleScrollStart() {
+            isScrolling = true;
+            clearScrollTimer();
+        }
+        
+        function handleScrollEnd() {
+            isScrolling = false;
+            
+            // Find the nearest section
+            const nearestSection = getCurrentSection();
+            
+            // Only snap if we're not already at the target section
+            if (nearestSection !== currentSection) {
+                scrollToSection(nearestSection);
+            }
+            
+            // Update indicators
+            updateIndicators(nearestSection);
+        }
+        
+        function clearScrollTimer() {
+            if (scrollTimer) {
+                clearTimeout(scrollTimer);
+                scrollTimer = null;
+            }
+        }
+        
+        function handleScroll() {
+            // Reset the timer each time we scroll
+            clearScrollTimer();
+            // Wait 150ms after scroll stops before snapping
+            scrollTimer = setTimeout(handleScrollEnd, 150);
+        }
+        
+        function handleResize() {
+            // Recalculate sections on window resize
+            getSections();
+            
+            // Re-snap to current section to maintain proper alignment
+            scrollToSection(currentSection);
+        }
+    </script>
+</body>
+</html>
