@@ -33,6 +33,7 @@ body {
     padding: 0.8rem;
     display: flex;
     justify-content: space-around;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
 .nav-link {
@@ -154,6 +155,7 @@ body {
     border-radius: 8px;
     padding: 1.5rem;
     color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
 .about-card h2 {
@@ -185,6 +187,7 @@ body {
     align-items: center;
     padding: 10px;
     transition: transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
 .tech-icon:hover {
@@ -223,6 +226,7 @@ body {
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
 .project-header {
@@ -286,6 +290,7 @@ body {
     cursor: pointer;
     font-size: 1.5rem;
     transition: background-color 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
 .arrow-left {
@@ -317,6 +322,7 @@ body {
     position: relative;
     overflow: hidden;
     transition: transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
 .job-card::before {
