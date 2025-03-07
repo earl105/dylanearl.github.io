@@ -78,7 +78,7 @@
 <div class="tech-icons">
     <div class="tech-icon"><img src="images/javaLogo.png" alt="Java" class="tech-icon-img"></div>
     <div class="tech-icon"><img src="images/cLogo.png" alt="C" class="tech-icon-img"></div>
-    <div class="tech-icon"><img src="images/x86ASM.png" alt="x86-64 Assembly" class="tech-icon-img"></div>
+    <div class="tech-icon"><img src="images/asmLogo.png" alt="x86-64 Assembly" class="tech-icon-img"></div>
     <div class="tech-icon"><img src="images/matlabLogo.png" alt="MATLAB" class="tech-icon-img"></div>
     <div class="tech-icon"><img src="images/htmlLogo.png" alt="HTML" class="tech-icon-img"></div>
     <div class="tech-icon"><img src="images/cssLogo.png" alt="CSS" class="tech-icon-img"></div>
@@ -94,52 +94,81 @@
     
     <!-- Projects Section -->
     <div class="section" id="section3">
-        <div class="projects-container">
-            <div class="project-card">
-                <div class="project-header blue"></div>
-                <div class="project-body">
-                    <div class="project-title">
-                        Project 1
-                        <span>
-                            <span class="project-icon">&#128451;</span>
-                            <span class="project-icon">&#128269;</span>
-                        </span>
-                    </div>
-                    <p>Project 1 Sample Description. Blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah</p>
-                </div>
+        <!-- In main.html, update the projects-container div: -->
+<div class="projects-container">
+    <div class="project-card" data-index="0">
+        <div class="project-header blue"></div>
+        <div class="project-body">
+            <div class="project-title">
+                Project 1
+                <span>
+                    <span class="project-icon">&#128451;</span>
+                    <span class="project-icon">&#128269;</span>
+                </span>
             </div>
-            
-            <div class="project-card">
-                <div class="project-header green"></div>
-                <div class="project-body">
-                    <div class="project-title">
-                        Project 2
-                        <span>
-                            <span class="project-icon">&#128451;</span>
-                            <span class="project-icon">&#128269;</span>
-                        </span>
-                    </div>
-                    <p>Project 2 Sample Description. Blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah</p>
-                </div>
-            </div>
-            
-            <div class="project-card">
-                <div class="project-header orange"></div>
-                <div class="project-body">
-                    <div class="project-title">
-                        Project 3
-                        <span>
-                            <span class="project-icon">&#128451;</span>
-                            <span class="project-icon">&#128269;</span>
-                        </span>
-                    </div>
-                    <p>Project 3 Sample Description. Blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah</p>
-                </div>
-            </div>
-            
-            <div class="arrow-nav arrow-left">&lt;</div>
-            <div class="arrow-nav arrow-right">&gt;</div>
+            <p>Project 1 Sample Description. This is my first project showcasing my skills in web development. It includes responsive design and interactive elements.</p>
         </div>
+    </div>
+    
+    <div class="project-card" data-index="1">
+        <div class="project-header green"></div>
+        <div class="project-body">
+            <div class="project-title">
+                Project 2
+                <span>
+                    <span class="project-icon">&#128451;</span>
+                    <span class="project-icon">&#128269;</span>
+                </span>
+            </div>
+            <p>Project 2 Sample Description. A mobile application built with React Native that helps users track their daily tasks and set reminders for important events.</p>
+        </div>
+    </div>
+    
+    <div class="project-card" data-index="2">
+        <div class="project-header orange"></div>
+        <div class="project-body">
+            <div class="project-title">
+                Project 3
+                <span>
+                    <span class="project-icon">&#128451;</span>
+                    <span class="project-icon">&#128269;</span>
+                </span>
+            </div>
+            <p>Project 3 Sample Description. An Arduino-based smart home system that monitors temperature, humidity, and light levels to automate home appliances.</p>
+        </div>
+    </div>
+    
+    <div class="project-card hidden" data-index="3">
+        <div class="project-header purple"></div>
+        <div class="project-body">
+            <div class="project-title">
+                Project 4
+                <span>
+                    <span class="project-icon">&#128451;</span>
+                    <span class="project-icon">&#128269;</span>
+                </span>
+            </div>
+            <p>Project 4 Sample Description. A machine learning model that analyzes social media sentiment to predict market trends for small businesses.</p>
+        </div>
+    </div>
+    
+    <div class="project-card hidden" data-index="4">
+        <div class="project-header red"></div>
+        <div class="project-body">
+            <div class="project-title">
+                Project 5
+                <span>
+                    <span class="project-icon">&#128451;</span>
+                    <span class="project-icon">&#128269;</span>
+                </span>
+            </div>
+            <p>Project 5 Sample Description. A 3D-printed robot arm controlled by custom software that can be programmed to perform repetitive tasks with precision.</p>
+        </div>
+    </div>
+    
+    <div class="arrow-nav arrow-left">&lt;</div>
+    <div class="arrow-nav arrow-right">&gt;</div>
+</div>
     </div>
     
     <!-- Experience Section -->
