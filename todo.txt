@@ -1,8 +1,9 @@
-fix about me page's subsections to look like the screenshot
-make the arrows under the projects section rotate with at least 5 sample projects (circularly, such that if i am at the end of the cycle it goes to the first one)
-modify the laptop that says software developer, student to be a static image
-modify the icons at the about me section to be the orignal images in the screenshot. you may leave them blank for now with sample names for the srcs like onshapeLogo.png, arduinoLogo.png, etc.
-change the project sample's emojis to images such that they can be replaced with the logos of the coding langauges of the projects. 
+fix about me page's subsections to look like the screenshot, but leave the tech icons as they are in the html, as those are updated and look as expected. 
+make the logic for the rotation of projects better. the current iteration goes from displaying 3,4,5 to 1,4,5 to 1,2,5 to 1,2,3 when rotating right, but it should go from 3,4,5 to 4,5,1, to 5,1,2, to 1,2,3
+modify the laptop that says software developer, student to be a static image of a laptop. its src is images/laptop.png
+change the project sample's emojis to images such that they can be replaced with the logos of the coding langauges of the projects (for example, a logo of java, C, assembly, etc.). assume images src is as follows: images/javaLogo.png, images/cLogo.png, etc.
 make the job description bubble slightly grow in size when the mouse hovers over it
-make mail icon copy email
-make contact section
+make the tech icons grow slightly on mouse hover. 
+make mail icon copy email to clipboard and display message "Copied" under the email icon. then, after a few seconds, fade copied message away. 
+make contact section, following the format of the provided screenshot.
+add suble drop shadows/highlights to make elements such as the top page selector, the jobs, the about me blocks, and my name more visually interesting.
