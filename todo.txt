@@ -1,5 +1,4 @@
 remove dot indicators at the bottom
-make html, script, and css separate files
 make each section full screen, not the weird windowed thing going on right now
 fix about me page's subsections to look like the screenshot
 make the arrows under the projects section rotate with at least 5 sample projects (circularly, such that if i am at the end of the cycle it goes to the first one)

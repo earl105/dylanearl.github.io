@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -43,32 +42,43 @@ body {
     padding: 0.3rem 0.6rem;
 }
 
+/* Removed the underline for active nav links */
 .nav-link.active {
-    text-decoration: underline;
+    /* Removed text-decoration: underline; */
+    /* You can optionally add a different active state indicator here if desired */
 }
 
+/* Make each section full screen with alternating background colors */
 .section {
     width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 2rem;
     position: relative;
     padding-top: 70px; /* Add padding to account for fixed nav */
 }
 
+/* Alternating background colors for sections */
+.section:nth-child(odd) {
+    background-color: #1a1a1a; /* Darker gray for odd sections (1, 3) */
+}
+
+.section:nth-child(even) {
+    background-color: #2a2a2a; /* Lighter gray for even sections (2, 4) */
+}
+
+/* Remove the content container that was creating the windowed effect */
 .content-container {
-    width: 90%;
-    max-width: 1200px;
-    height: 85%;
-    background-color: #4d4d4d;
-    border-radius: 8px;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1rem;
-    position: relative;
+    justify-content: center;
+    padding: 2rem;
 }
 
 /* Home Page Styles */
@@ -77,8 +87,7 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 80%;
-    height: 60%;
-    margin-top: 4rem;
+    margin: 0 auto;
 }
 
 .name-title {
@@ -120,8 +129,8 @@ body {
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
     width: 90%;
-    height: 70%;
-    margin-top: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .about-card {
@@ -145,12 +154,18 @@ body {
     margin-top: 2rem;
     flex-wrap: wrap;
     gap: 10px;
+    width: 90%;
+    max-width: 1200px;
 }
 
 .tech-icon {
     width: 40px;
     height: 40px;
     border-radius: 5px;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .location-grid {
@@ -165,8 +180,8 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 90%;
-    height: 70%;
-    margin-top: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
     position: relative;
 }
 
@@ -241,8 +256,8 @@ body {
 /* Experience Page Styles */
 .experience-container {
     width: 90%;
-    height: 70%;
-    margin-top: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 20px;
