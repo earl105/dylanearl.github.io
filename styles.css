@@ -45,7 +45,6 @@ body {
 /* Removed the underline for active nav links */
 .nav-link.active {
     /* Removed text-decoration: underline; */
-    /* You can optionally add a different active state indicator here if desired */
 }
 
 /* Make each section full screen with alternating background colors */
@@ -309,25 +308,26 @@ body {
     left: -1rem;
 }
 
-.scroll-indicator {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-    z-index: 100;
-}
+/* Removed the scroll indicator styles */
+/* .scroll-indicator { */
+/*     position: fixed; */
+/*     bottom: 30px; */
+/*     left: 50%; */
+/*     transform: translateX(-50%); */
+/*     display: flex; */
+/*     gap: 10px; */
+/*     z-index: 100; */
+/* } */
 
-.indicator {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.3);
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+/* .indicator { */
+/*     width: 12px; */
+/*     height: 12px; */
+/*     border-radius: 50%; */
+/*     background-color: rgba(255, 255, 255, 0.3); */
+/*     cursor: pointer; */
+/*     transition: background-color 0.3s; */
+/* } */
 
-.indicator.active {
-    background-color: white;
-}
+/* .indicator.active { */
+/*     background-color: white; */
+/* } */
