@@ -136,18 +136,7 @@ function handleResize() {
     scrollToSection(currentSection);
 }
 
-// Add functionality for project arrows
-document.querySelector('.arrow-left').addEventListener('click', function() {
-    // Arrow functionality would go here if needed
-});
-
-document.querySelector('.arrow-right').addEventListener('click', function() {
-    // Arrow functionality would go here if needed
-});
-
-
-// Add this code to script.js
-// Initialize the project carousel
+// Project carousel functions
 let projectCards = [];
 let visibleProjects = 3;
 let totalProjects = 5;
@@ -160,6 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function initializeProjectCarousel() {
     projectCards = Array.from(document.querySelectorAll('.project-card'));
+    totalProjects = projectCards.length;
     
     // Set up arrow functionality
     document.querySelector('.arrow-left').addEventListener('click', function() {
@@ -176,8 +166,10 @@ function initializeProjectCarousel() {
 
 function rotateProjects(direction) {
     if (direction === 'left') {
+        // Move one position to the right (show the previous card)
         currentStartIndex = (currentStartIndex - 1 + totalProjects) % totalProjects;
     } else if (direction === 'right') {
+        // Move one position to the left (show the next card)
         currentStartIndex = (currentStartIndex + 1) % totalProjects;
     }
     
@@ -194,14 +186,8 @@ function updateVisibleProjects() {
     for (let i = 0; i < visibleProjects; i++) {
         let index = (currentStartIndex + i) % totalProjects;
         projectCards[index].classList.remove('hidden');
+        
+        // Position the cards side by side with left-to-right ordering
+        projectCards[index].style.order = i;
     }
-    
-    // Apply animation if needed
-    projectCards.forEach(card => {
-        if (!card.classList.contains('hidden')) {
-            card.style.transform = 'scale(1)';
-        } else {
-            card.style.transform = 'scale(0.9)';
-        }
-    });
 }

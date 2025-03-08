@@ -131,14 +131,12 @@ body {
     width: 240px;
 }
 
-.laptop-text {
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    color: white;
+.laptop-img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
+
 
 /* About Page Styles */
 .about-grid {
@@ -215,6 +213,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
+    flex-wrap: nowrap;
 }
 
 .project-card {
@@ -227,10 +226,24 @@ body {
     flex-direction: column;
     transition: transform 0.3s ease-in-out;
     box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    order: 0; 
+}
+
+.tech-logo {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    vertical-align: middle;
+}
+
+.project-icon {
+    display: inline-block;
+    margin-left: 5px;
+    vertical-align: middle;
 }
 
 .project-card:hover {
- transform: scale(1.1);
+ transform: scale(1.025);
 }
 
 .project-header {
@@ -298,11 +311,11 @@ body {
 }
 
 .arrow-left {
-    left: -50px;
+    left: -80px;
 }
 
 .arrow-right {
-    right: -50px;
+    right: -80px;
 }
 
 .arrow-nav:hover {
