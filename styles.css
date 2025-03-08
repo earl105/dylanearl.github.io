@@ -125,16 +125,18 @@ body {
 
 .laptop-container {
     position: relative;
+    width: 400px;
+    height: 300px;
 }
 
-.laptop-image {
-    width: 240px;
-}
-
-.laptop-img {
+.laptop-scene {
     width: 100%;
-    height: auto;
-    display: block;
+    height: 100%;
+    cursor: grab;
+}
+
+.laptop-scene:active {
+    cursor: grabbing;
 }
 
 

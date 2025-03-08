@@ -1,3 +1,8 @@
 fix about me page's subsections to look like the screenshot, but leave the tech icons as they are in the html, as those are updated and look as expected. 
-change the project sample's emojis to images such that they can be replaced with the logos of the coding langauges of the projects (for example, a logo of java, C, assembly, etc.). assume images src is as follows: images/javaLogo.png, images/cLogo.png, etc.
 make contact section, following the format of the provided screenshot.
+the screen moves the wrong way when scrolling (it opens up the laptop more when scrolling away rather than closing the lid). additionally, it moves too little, the user should be able to see the laptop close just as it is coming out of visibility. 
+the laptop's screen doesnt line up with the base of the laptop/where it should hinge. 
+the laptop doesnt have keys or a trackpad
+make the laptop element take up more screen real estate
+make the laptop screen type out ">Dylan Earl"\n ">Software Dev", then delete the text one letter at a time, then type out "Student @"\n ">Ohio State"
+make the laptop move a small amount left/right passively so the user knows that it can move 

@@ -191,3 +191,158 @@ function updateVisibleProjects() {
         projectCards[index].style.order = i;
     }
 }
+
+// Add this code to your script.js file or create a new script tag in main.html
+
+// Load Three.js from CDN
+document.addEventListener('DOMContentLoaded', function() {
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+    script.onload = initLaptop;
+    document.head.appendChild(script);
+});
+
+function initLaptop() {
+    // Scene setup
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, 400 / 300, 0.1, 1000);
+    camera.position.z = 5;
+    
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(400, 300);
+    renderer.setClearColor(0x000000, 0);
+    
+    const container = document.getElementById('laptop-scene');
+    if (container) {
+        container.appendChild(renderer.domElement);
+    } else {
+        console.error('Laptop container not found');
+        return;
+    }
+    
+    // Lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
+    
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    directionalLight.position.set(1, 1, 1);
+    scene.add(directionalLight);
+    
+    // Create laptop base and screen
+    const laptopGroup = new THREE.Group();
+    
+    // Laptop base
+    const baseGeometry = new THREE.BoxGeometry(3, 0.2, 2);
+    const baseMaterial = new THREE.MeshPhongMaterial({ color: 0x333333 });
+    const base = new THREE.Mesh(baseGeometry, baseMaterial);
+    laptopGroup.add(base);
+    
+    // Laptop screen
+    const screenGeometry = new THREE.BoxGeometry(3, 2, 0.1);
+    const screenMaterial = new THREE.MeshPhongMaterial({ color: 0x333333 });
+    const screen = new THREE.Mesh(screenGeometry, screenMaterial);
+    
+    // Screen display
+    const displayGeometry = new THREE.PlaneGeometry(2.8, 1.8);
+    const displayMaterial = new THREE.MeshBasicMaterial({ color: 0x1a1a1a });
+    const display = new THREE.Mesh(displayGeometry, displayMaterial);
+    display.position.z = 0.06;
+    screen.add(display);
+    
+    // Position the screen above the base with a hinge
+    screen.position.y = 1.1;
+    screen.position.z = -0.9;
+    screen.rotation.x = -Math.PI / 6; // Slightly open by default
+    
+    laptopGroup.add(screen);
+    laptopGroup.position.y = -0.5;
+    scene.add(laptopGroup);
+    
+    // Variables for dragging interaction
+    let isDragging = false;
+    let previousMousePosition = {
+        x: 0,
+        y: 0
+    };
+    
+    // Event listeners for dragging
+    container.addEventListener('mousedown', function(e) {
+        isDragging = true;
+        previousMousePosition = {
+            x: e.clientX,
+            y: e.clientY
+        };
+    });
+    
+    container.addEventListener('mousemove', function(e) {
+        if (isDragging) {
+            const deltaMove = {
+                x: e.clientX - previousMousePosition.x,
+                y: e.clientY - previousMousePosition.y
+            };
+            
+            // Rotate the laptop group based on mouse movement
+            laptopGroup.rotation.y += deltaMove.x * 0.01;
+            laptopGroup.rotation.x += deltaMove.y * 0.01;
+            
+            previousMousePosition = {
+                x: e.clientX,
+                y: e.clientY
+            };
+        }
+    });
+    
+    window.addEventListener('mouseup', function() {
+        isDragging = false;
+    });
+    
+    // Scroll event to open/close laptop screen
+    window.addEventListener('scroll', updateLaptopScreen);
+    
+    function updateLaptopScreen() {
+        const scrollY = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const section1 = document.getElementById('section1');
+        
+        if (section1) {
+            const section1Top = section1.offsetTop;
+            const section1Bottom = section1Top + section1.offsetHeight;
+            
+            // Calculate how centered the user is on the section
+            const centerPosition = scrollY + (windowHeight / 2);
+            const sectionCenter = section1Top + (section1.offsetHeight / 2);
+            const distanceFromCenter = Math.abs(centerPosition - sectionCenter);
+            
+            // Map the distance to a rotation value (more open when centered)
+            const maxDistance = windowHeight;
+            const openRatio = 1 - Math.min(distanceFromCenter / maxDistance, 1);
+            
+            // Update screen rotation (open = -Math.PI/6, closed = -Math.PI/2)
+            const minRotation = -Math.PI / 2; // Closed
+            const maxRotation = -Math.PI / 6; // Open
+            screen.rotation.x = minRotation + (openRatio * (maxRotation - minRotation));
+        }
+    }
+    
+    // Animation loop
+    function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+    }
+    
+    animate();
+    
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        const containerWidth = container.clientWidth;
+        const containerHeight = container.clientHeight;
+        
+        camera.aspect = containerWidth / containerHeight;
+        camera.updateProjectionMatrix();
+        
+        renderer.setSize(containerWidth, containerHeight);
+    });
+    
+    // Initial update for laptop screen position
+    updateLaptopScreen();
+}
