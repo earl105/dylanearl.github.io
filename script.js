@@ -200,6 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.head.appendChild(script);
 });
 
+// This function is changed to properly position and rotate the laptop screen
 function initLaptop() {
     // Scene setup
     const scene = new THREE.Scene();
@@ -244,7 +245,7 @@ function initLaptop() {
     base.add(keyboard);
     
     // Add key grid
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 5; i++) {
         for (let j = 0; j < 12; j++) {
             const keyGeometry = new THREE.BoxGeometry(0.18, 0.02, 0.18);
             const keyMaterial = new THREE.MeshPhongMaterial({ color: 0x111111 });
@@ -255,12 +256,12 @@ function initLaptop() {
     }
     
     // Add trackpad
-    const trackpadGeometry = new THREE.PlaneGeometry(1, 0.8);
+    const trackpadGeometry = new THREE.PlaneGeometry(1, 0.5);
     const trackpadMaterial = new THREE.MeshPhongMaterial({ color: 0x111111 });
     const trackpad = new THREE.Mesh(trackpadGeometry, trackpadMaterial);
     trackpad.rotation.x = -Math.PI / 2;
     trackpad.position.y = 0.111;
-    trackpad.position.z = 0.5;
+    trackpad.position.z = 0.6;
     base.add(trackpad);
     
     // Laptop screen
@@ -275,12 +276,22 @@ function initLaptop() {
     display.position.z = 0.06;
     screen.add(display);
     
-    // Position the screen above the base with a proper hinge
-    screen.position.y = 1;
-    screen.position.z = -1.5; // Fixed hinge position so it lines up correctly
-    screen.rotation.x = -Math.PI / 6; // Slightly open by default
+    // Create a hinge group to handle proper rotation
+    const hingeGroup = new THREE.Group();
+    laptopGroup.add(hingeGroup);
     
-    laptopGroup.add(screen);
+    // Position the hinge at the back of the base
+    hingeGroup.position.z = -1;
+    
+    // Add the screen to the hinge group
+    hingeGroup.add(screen);
+    
+    // Position the screen so its bottom edge is at the hinge point
+    screen.position.y = 1; // Half the screen height (2/2=1) to place bottom at origin
+    
+    // Set initial screen angle
+    hingeGroup.rotation.x = -Math.PI / 6; // Slightly open by default
+    
     laptopGroup.position.y = -0.3; // Position slightly higher on the screen
     scene.add(laptopGroup);
     
@@ -324,7 +335,6 @@ function initLaptop() {
     
     // Scroll event to open/close laptop screen
     window.addEventListener('scroll', updateLaptopScreen);
-    
     function updateLaptopScreen() {
         const scrollY = window.scrollY;
         const windowHeight = window.innerHeight;
@@ -335,19 +345,25 @@ function initLaptop() {
             const section1Height = section1.offsetHeight;
             
             // Calculate scroll position relative to section1
-            // 0 = top of section, 1 = bottom of section
             const relativeScroll = Math.min(Math.max(scrollY / section1Height, 0), 1);
             
-            // Reverse the mapping so that scrolling down closes the laptop
-            // Open when at top, closed when scrolled away
-            const openRatio = 1 - relativeScroll;
+            // Use relativeScroll directly (no inversion) so scrolling down closes the laptop
+            const closedRatio = relativeScroll; // Now it's direct
             
-            // Update screen rotation (open = -Math.PI/6, closed = -Math.PI*0.9)
-            const minRotation = -Math.PI * 0.9; // More fully closed
-            const maxRotation = -Math.PI / 6; // Open
-            screen.rotation.x = minRotation + (openRatio * (maxRotation - minRotation));
+            // Set the rotation for open (100 degrees ~ approx. -100° = -Math.PI / 1.8 radians)
+            // and closed (0° = screen flush with chassis) positions
+            const openRotation = -Math.PI / 10; // Approx. 100 degrees for the open position
+            const closedRotation = 3; // Closed position (screen flush with chassis)
+            
+            // Linear interpolation between open and closed positions based on scroll
+            hingeGroup.rotation.x = openRotation + (closedRatio * (closedRotation - openRotation));
         }
     }
+    
+    
+    
+    
+    
     
     // Add passive movement to suggest interactivity
     let time = 0;
