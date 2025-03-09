@@ -87,7 +87,14 @@ body {
     padding: 2rem;
 }
 
-
+/* Home Page Styles */
+.home-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+}
 
 .name-title {
     font-size: 5rem;

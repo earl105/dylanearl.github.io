@@ -254,6 +254,16 @@ function initLaptop() {
             base.add(key);
         }
     }
+
+
+    //add spacebar
+    const spaceGeometry = new THREE.BoxGeometry(1.2, 0.18, 0.07);
+    const spaceMaterial = new THREE.MeshPhongMaterial({ color: 0x111111 });
+    const space = new THREE.Mesh(spaceGeometry, spaceMaterial);
+    space.rotation.x = -Math.PI / 2;
+    space.position.y = 0.111;
+    space.position.z = 0.2;
+    base.add(space);
     
     // Add trackpad
     const trackpadGeometry = new THREE.PlaneGeometry(1, 0.5);
@@ -287,7 +297,7 @@ function initLaptop() {
     hingeGroup.add(screen);
     
     // Position the screen so its bottom edge is at the hinge point
-    screen.position.y = 1; // Half the screen height (2/2=1) to place bottom at origin
+    screen.position.y = 1.05; // Half the screen height (2/2=1) to place bottom at origin
     
     // Set initial screen angle
     hingeGroup.rotation.x = -Math.PI / 6; // Slightly open by default
@@ -316,11 +326,13 @@ function initLaptop() {
             const deltaMove = {
                 x: e.clientX - previousMousePosition.x,
                 y: e.clientY - previousMousePosition.y
+                
             };
             
             // Rotate the laptop group based on mouse movement
             laptopGroup.rotation.y += deltaMove.x * 0.01;
             laptopGroup.rotation.x += deltaMove.y * 0.01;
+          
             
             previousMousePosition = {
                 x: e.clientX,
@@ -347,13 +359,11 @@ function initLaptop() {
             // Calculate scroll position relative to section1
             const relativeScroll = Math.min(Math.max(scrollY / section1Height, 0), 1);
             
-            // Use relativeScroll directly (no inversion) so scrolling down closes the laptop
-            const closedRatio = relativeScroll; // Now it's direct
             
-            // Set the rotation for open (100 degrees ~ approx. -100° = -Math.PI / 1.8 radians)
-            // and closed (0° = screen flush with chassis) positions
-            const openRotation = -Math.PI / 10; // Approx. 100 degrees for the open position
-            const closedRotation = 3; // Closed position (screen flush with chassis)
+            const closedRatio = relativeScroll; 
+           
+            const openRotation = -Math.PI / 6; 
+            const closedRotation = 3; // approx Closed position (screen flush with chassis)
             
             // Linear interpolation between open and closed positions based on scroll
             hingeGroup.rotation.x = openRotation + (closedRatio * (closedRotation - openRotation));
@@ -374,7 +384,7 @@ function initLaptop() {
         // Add subtle passive movement to indicate interactivity
         if (!isDragging) {
             laptopGroup.rotation.y = Math.sin(time * 0.5) * 0.1;
-            laptopGroup.rotation.x = Math.sin(time * 0.3) * 0.05 - 0.1; // Slight tilt
+            //laptopGroup.rotation.x = Math.sin(time * 0.3) * 0.05 - 0.1; // Slight tilt
         }
         
         requestAnimationFrame(animate);
