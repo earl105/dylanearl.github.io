@@ -192,8 +192,6 @@ function updateVisibleProjects() {
     }
 }
 
-// Add this code to your script.js file or create a new script tag in main.html
-
 // Load Three.js from CDN
 document.addEventListener('DOMContentLoaded', function() {
     const script = document.createElement('script');
@@ -205,11 +203,11 @@ document.addEventListener('DOMContentLoaded', function() {
 function initLaptop() {
     // Scene setup
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, 400 / 300, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(75, 600 / 450, 0.1, 1000);
     camera.position.z = 5;
     
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(400, 300);
+    renderer.setSize(600, 450); // Increased size for more screen real estate
     renderer.setClearColor(0x000000, 0);
     
     const container = document.getElementById('laptop-scene');
@@ -237,6 +235,34 @@ function initLaptop() {
     const base = new THREE.Mesh(baseGeometry, baseMaterial);
     laptopGroup.add(base);
     
+    // Add keyboard
+    const keyboardGeometry = new THREE.PlaneGeometry(2.8, 1.8);
+    const keyboardMaterial = new THREE.MeshBasicMaterial({ color: 0x222222 });
+    const keyboard = new THREE.Mesh(keyboardGeometry, keyboardMaterial);
+    keyboard.rotation.x = -Math.PI / 2;
+    keyboard.position.y = 0.11;
+    base.add(keyboard);
+    
+    // Add key grid
+    for (let i = 0; i < 6; i++) {
+        for (let j = 0; j < 12; j++) {
+            const keyGeometry = new THREE.BoxGeometry(0.18, 0.02, 0.18);
+            const keyMaterial = new THREE.MeshPhongMaterial({ color: 0x111111 });
+            const key = new THREE.Mesh(keyGeometry, keyMaterial);
+            key.position.set(-1.3 + j * 0.23, 0.13, -0.8 + i * 0.25);
+            base.add(key);
+        }
+    }
+    
+    // Add trackpad
+    const trackpadGeometry = new THREE.PlaneGeometry(1, 0.8);
+    const trackpadMaterial = new THREE.MeshPhongMaterial({ color: 0x111111 });
+    const trackpad = new THREE.Mesh(trackpadGeometry, trackpadMaterial);
+    trackpad.rotation.x = -Math.PI / 2;
+    trackpad.position.y = 0.111;
+    trackpad.position.z = 0.5;
+    base.add(trackpad);
+    
     // Laptop screen
     const screenGeometry = new THREE.BoxGeometry(3, 2, 0.1);
     const screenMaterial = new THREE.MeshPhongMaterial({ color: 0x333333 });
@@ -249,13 +275,13 @@ function initLaptop() {
     display.position.z = 0.06;
     screen.add(display);
     
-    // Position the screen above the base with a hinge
-    screen.position.y = 1.1;
-    screen.position.z = -0.9;
+    // Position the screen above the base with a proper hinge
+    screen.position.y = 1;
+    screen.position.z = -1.5; // Fixed hinge position so it lines up correctly
     screen.rotation.x = -Math.PI / 6; // Slightly open by default
     
     laptopGroup.add(screen);
-    laptopGroup.position.y = -0.5;
+    laptopGroup.position.y = -0.3; // Position slightly higher on the screen
     scene.add(laptopGroup);
     
     // Variables for dragging interaction
@@ -306,26 +332,35 @@ function initLaptop() {
         
         if (section1) {
             const section1Top = section1.offsetTop;
-            const section1Bottom = section1Top + section1.offsetHeight;
+            const section1Height = section1.offsetHeight;
             
-            // Calculate how centered the user is on the section
-            const centerPosition = scrollY + (windowHeight / 2);
-            const sectionCenter = section1Top + (section1.offsetHeight / 2);
-            const distanceFromCenter = Math.abs(centerPosition - sectionCenter);
+            // Calculate scroll position relative to section1
+            // 0 = top of section, 1 = bottom of section
+            const relativeScroll = Math.min(Math.max(scrollY / section1Height, 0), 1);
             
-            // Map the distance to a rotation value (more open when centered)
-            const maxDistance = windowHeight;
-            const openRatio = 1 - Math.min(distanceFromCenter / maxDistance, 1);
+            // Reverse the mapping so that scrolling down closes the laptop
+            // Open when at top, closed when scrolled away
+            const openRatio = 1 - relativeScroll;
             
-            // Update screen rotation (open = -Math.PI/6, closed = -Math.PI/2)
-            const minRotation = -Math.PI / 2; // Closed
+            // Update screen rotation (open = -Math.PI/6, closed = -Math.PI*0.9)
+            const minRotation = -Math.PI * 0.9; // More fully closed
             const maxRotation = -Math.PI / 6; // Open
             screen.rotation.x = minRotation + (openRatio * (maxRotation - minRotation));
         }
     }
     
-    // Animation loop
+    // Add passive movement to suggest interactivity
+    let time = 0;
+    
     function animate() {
+        time += 0.01;
+        
+        // Add subtle passive movement to indicate interactivity
+        if (!isDragging) {
+            laptopGroup.rotation.y = Math.sin(time * 0.5) * 0.1;
+            laptopGroup.rotation.x = Math.sin(time * 0.3) * 0.05 - 0.1; // Slight tilt
+        }
+        
         requestAnimationFrame(animate);
         renderer.render(scene, camera);
     }
@@ -334,8 +369,8 @@ function initLaptop() {
     
     // Handle window resize
     window.addEventListener('resize', function() {
-        const containerWidth = container.clientWidth;
-        const containerHeight = container.clientHeight;
+        const containerWidth = Math.min(container.clientWidth, 600);
+        const containerHeight = containerWidth * 0.75;
         
         camera.aspect = containerWidth / containerHeight;
         camera.updateProjectionMatrix();

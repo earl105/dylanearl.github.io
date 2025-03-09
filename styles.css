@@ -87,14 +87,7 @@ body {
     padding: 2rem;
 }
 
-/* Home Page Styles */
-.home-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 80%;
-    margin: 0 auto;
-}
+
 
 .name-title {
     font-size: 5rem;
@@ -123,10 +116,12 @@ body {
     transform: scale(1.1);
 }
 
+/* Update these styles in your styles.css file */
 .laptop-container {
     position: relative;
-    width: 400px;
-    height: 300px;
+    width: 600px;
+    height: 450px;
+    margin-left: 20px;
 }
 
 .laptop-scene {
@@ -137,6 +132,16 @@ body {
 
 .laptop-scene:active {
     cursor: grabbing;
+}
+
+/* Update home-content for better spacing with larger laptop */
+.home-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+    gap: 20px;
 }
 
 
