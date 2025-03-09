@@ -1,197 +1,3 @@
-// Variables to track scrolling state
-let isScrolling = false;
-let scrollTimer = null;
-let sections = [];
-let indicators = [];
-let currentSection = 0;
-let navLinks = [];
-
-// Initialize everything when the page loads
-window.addEventListener('load', initialize);
-
-function initialize() {
-    getSections();
-    setupIndicators();
-    setupNavLinks();
-    
-    // Set up event listeners
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('touchmove', handleScrollStart);
-    window.addEventListener('wheel', handleScrollStart);
-    window.addEventListener('resize', handleResize);
-    
-    // Initial update of indicators based on starting position
-    updateIndicators(getCurrentSection());
-}
-
-function getSections() {
-    sections = Array.from(document.querySelectorAll('.section'));
-    indicators = Array.from(document.querySelectorAll('.indicator'));
-    navLinks = Array.from(document.querySelectorAll('.nav-link'));
-}
-
-function setupIndicators() {
-    indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => scrollToSection(index));
-    });
-}
-
-function setupNavLinks() {
-    navLinks.forEach((link) => {
-        link.addEventListener('click', (e) => {
-            if (link.getAttribute('href').startsWith('#section')) {
-                e.preventDefault();
-                const sectionIndex = parseInt(link.getAttribute('href').replace('#section', '')) - 1;
-                scrollToSection(sectionIndex);
-            }
-        });
-    });
-}
-
-function updateIndicators(index) {
-    currentSection = index;
-    
-    indicators.forEach((indicator, i) => {
-        if (i === index) {
-            indicator.classList.add('active');
-        } else {
-            indicator.classList.remove('active');
-        }
-    });
-    
-    // Update navigation links
-    navLinks.forEach((link) => {
-        const href = link.getAttribute('href');
-        if (href && href.startsWith('#section')) {
-            const sectionIndex = parseInt(href.replace('#section', '')) - 1;
-            if (sectionIndex === index) {
-                link.classList.add('active');
-            } else {
-                link.classList.remove('active');
-            }
-        }
-    });
-}
-
-function scrollToSection(index) {
-    if (index < 0 || index >= sections.length) return;
-    
-    const targetPosition = index * window.innerHeight;
-    window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
-    });
-}
-
-function getCurrentSection() {
-    const scrollPosition = window.scrollY;
-    const viewportHeight = window.innerHeight;
-    
-    // Calculate which section is most visible
-    const sectionIndex = Math.round(scrollPosition / viewportHeight);
-    
-    // Ensure index is within bounds
-    return Math.max(0, Math.min(sectionIndex, sections.length - 1));
-}
-
-function handleScrollStart() {
-    isScrolling = true;
-    clearScrollTimer();
-}
-
-function handleScrollEnd() {
-    isScrolling = false;
-    
-    // Find the nearest section
-    const nearestSection = getCurrentSection();
-    
-    // Only snap if we're not already at the target section
-    if (nearestSection !== currentSection) {
-        scrollToSection(nearestSection);
-    }
-    
-    // Update indicators
-    updateIndicators(nearestSection);
-}
-
-function clearScrollTimer() {
-    if (scrollTimer) {
-        clearTimeout(scrollTimer);
-        scrollTimer = null;
-    }
-}
-
-function handleScroll() {
-    // Reset the timer each time we scroll
-    clearScrollTimer();
-    // Wait 150ms after scroll stops before snapping
-    scrollTimer = setTimeout(handleScrollEnd, 150);
-}
-
-function handleResize() {
-    // Recalculate sections on window resize
-    getSections();
-    
-    // Re-snap to current section to maintain proper alignment
-    scrollToSection(currentSection);
-}
-
-// Project carousel functions
-let projectCards = [];
-let visibleProjects = 3;
-let totalProjects = 5;
-let currentStartIndex = 0;
-
-// Initialize project carousel when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    initializeProjectCarousel();
-});
-
-function initializeProjectCarousel() {
-    projectCards = Array.from(document.querySelectorAll('.project-card'));
-    totalProjects = projectCards.length;
-    
-    // Set up arrow functionality
-    document.querySelector('.arrow-left').addEventListener('click', function() {
-        rotateProjects('left');
-    });
-    
-    document.querySelector('.arrow-right').addEventListener('click', function() {
-        rotateProjects('right');
-    });
-    
-    // Initial display
-    updateVisibleProjects();
-}
-
-function rotateProjects(direction) {
-    if (direction === 'left') {
-        // Move one position to the right (show the previous card)
-        currentStartIndex = (currentStartIndex - 1 + totalProjects) % totalProjects;
-    } else if (direction === 'right') {
-        // Move one position to the left (show the next card)
-        currentStartIndex = (currentStartIndex + 1) % totalProjects;
-    }
-    
-    updateVisibleProjects();
-}
-
-function updateVisibleProjects() {
-    // Hide all projects first
-    projectCards.forEach(card => {
-        card.classList.add('hidden');
-    });
-    
-    // Show only the visible ones
-    for (let i = 0; i < visibleProjects; i++) {
-        let index = (currentStartIndex + i) % totalProjects;
-        projectCards[index].classList.remove('hidden');
-        
-        // Position the cards side by side with left-to-right ordering
-        projectCards[index].style.order = i;
-    }
-}
-
 // Load Three.js from CDN
 document.addEventListener('DOMContentLoaded', function() {
     const script = document.createElement('script');
@@ -255,7 +61,6 @@ function initLaptop() {
         }
     }
 
-
     //add spacebar
     const spaceGeometry = new THREE.BoxGeometry(1.2, 0.18, 0.07);
     const spaceMaterial = new THREE.MeshPhongMaterial({ color: 0x111111 });
@@ -279,9 +84,21 @@ function initLaptop() {
     const screenMaterial = new THREE.MeshPhongMaterial({ color: 0x333333 });
     const screen = new THREE.Mesh(screenGeometry, screenMaterial);
     
-    // Screen display
+    // Create a text canvas
+    const textCanvas = document.createElement('canvas');
+    textCanvas.width = 512;  // Higher resolution for text clarity
+    textCanvas.height = 256;
+    const textContext = textCanvas.getContext('2d');
+    
+    // Create a texture from the canvas
+    const textTexture = new THREE.CanvasTexture(textCanvas);
+    
+    // Screen display with text texture
     const displayGeometry = new THREE.PlaneGeometry(2.8, 1.8);
-    const displayMaterial = new THREE.MeshBasicMaterial({ color: 0x1a1a1a });
+    const displayMaterial = new THREE.MeshBasicMaterial({ 
+        map: textTexture,
+        color: 0x00ff00  // Terminal green color
+    });
     const display = new THREE.Mesh(displayGeometry, displayMaterial);
     display.position.z = 0.06;
     screen.add(display);
@@ -304,6 +121,49 @@ function initLaptop() {
     
     laptopGroup.position.y = -0.3; // Position slightly higher on the screen
     scene.add(laptopGroup);
+    
+    // Text animation variables
+    const lines = [
+        ">Dylan Earl",
+        ">Software Dev",
+        "Student @",
+        ">Ohio State"
+    ];
+    const secondLines = [
+        "Student @",
+        ">Ohio State"
+    ];
+    
+    let currentText = "";
+    let targetText = "";
+    let currentLineIndex = 0;
+    let isTyping = true;  // Start by typing
+    let isFirstSet = true;  // Start with first set of lines
+    let charIndex = 0;
+    let timer = 0;
+    let blinkTimer = 0;
+    let showCursor = true;
+    
+    // Function to update the text canvas
+    function updateTextCanvas() {
+        textContext.clearRect(0, 0, textCanvas.width, textCanvas.height);
+        textContext.fillStyle = 'rgba(0, 0, 0, 0.9)';
+        textContext.fillRect(0, 0, textCanvas.width, textCanvas.height);
+        
+        // Set text properties
+        textContext.font = 'bold 32px monospace';
+        textContext.fillStyle = '#00ff00';
+        
+        // Draw text with line breaks
+        const lines = currentText.split('\n');
+        lines.forEach((line, index) => {
+            const displayLine = line + (index === lines.length - 1 && showCursor ? '|' : '');
+            textContext.fillText(displayLine, 20, 60 + index * 50);
+        });
+        
+        // Update the texture
+        textTexture.needsUpdate = true;
+    }
     
     // Variables for dragging interaction
     let isDragging = false;
@@ -370,16 +230,68 @@ function initLaptop() {
         }
     }
     
-    
-    
-    
-    
-    
     // Add passive movement to suggest interactivity
     let time = 0;
     
     function animate() {
         time += 0.01;
+        timer += 0.016;  // Approximate 60fps in seconds
+        blinkTimer += 0.016;
+        
+        // Blink cursor every half second
+        if (blinkTimer > 0.5) {
+            showCursor = !showCursor;
+            blinkTimer = 0;
+        }
+        
+        // Update text animation
+        if (timer > 0.1) {  // Adjust speed here - lower is faster
+            timer = 0;
+            
+            const currentLines = isFirstSet ? lines : secondLines;
+            
+            if (isTyping) {
+                // Typing animation
+                if (charIndex < currentLines[currentLineIndex].length) {
+                    charIndex++;
+                    targetText = currentLineIndex === 0 
+                        ? currentLines[0].substring(0, charIndex)
+                        : currentLines[0] + '\n' + currentLines[1].substring(0, charIndex);
+                } else if (currentLineIndex < 1) {
+                    // Move to next line
+                    currentLineIndex++;
+                    charIndex = 0;
+                } else if (timer > 1) {  // Pause at the end of typing
+                    // Prepare for deleting
+                    isTyping = false;
+                    timer = 0;
+                    charIndex = currentLines[1].length;
+                }
+            } else {
+                // Deleting animation
+                if (charIndex > 0 && currentLineIndex === 1) {
+                    charIndex--;
+                    targetText = currentLines[0] + '\n' + currentLines[1].substring(0, charIndex);
+                } else if (currentLineIndex > 0) {
+                    currentLineIndex--;
+                    charIndex = currentLines[0].length;
+                } else if (charIndex > 0) {
+                    charIndex--;
+                    targetText = currentLines[0].substring(0, charIndex);
+                } else if (timer > 1) {  // Pause at the end of deleting
+                    // Switch to the other set of lines and start typing again
+                    isTyping = true;
+                    isFirstSet = !isFirstSet;
+                    currentLineIndex = 0;
+                    charIndex = 0;
+                    timer = 0;
+                }
+            }
+            
+            currentText = targetText;
+        }
+        
+        updateTextCanvas();
         
         // Add subtle passive movement to indicate interactivity
         if (!isDragging) {
