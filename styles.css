@@ -219,6 +219,19 @@ body {
     transition: transform 0.3s ease-in-out;
 }
 
+.osu-logo-container {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.osu-logo {
+    width: 80%;
+    max-width: 250px;
+    margin-top: 20px;
+}
+
 .about-card:hover{
     transform: scale(1.025);
 }
@@ -416,7 +429,7 @@ body {
     top: 0;
     left: 0;
     height: 100%;
-    width: 5px;
+    width: 10px;
 }
 
 .job-card:hover {

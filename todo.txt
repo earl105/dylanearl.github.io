@@ -1,9 +1,4 @@
-fix about me page's subsections to look like the screenshot, but leave the tech icons as they are in the html, as those are updated and look as expected. 
+
 make contact section, following the format of the provided screenshot.
 make scroll/movement/rotation transition when rotating betweeen project cards
-
-
-
-
-make the laptop screen type out ">Dylan Earl"\n ">Software Dev", then delete the text one letter at a time, then type out "Student @"\n ">Ohio State"
 

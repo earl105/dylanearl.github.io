@@ -128,7 +128,7 @@ function initLaptop() {
     const lines = [
         ">Dylan Earl",
         ">Software Dev",
-        "Student @",
+        ">Student @",
         ">Ohio State"
     ];
 
