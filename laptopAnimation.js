@@ -37,8 +37,8 @@ function initLaptop() {
     const laptopGroup = new THREE.Group();
     
     // Laptop base
-    const baseGeometry = new THREE.BoxGeometry(3, 0.2, 2);
-    const baseMaterial = new THREE.MeshPhongMaterial({ color: 0x333333 });
+    const baseGeometry = new THREE.BoxGeometry(3, 0.1, 2);
+    const baseMaterial = new THREE.MeshPhongMaterial({ color: 0x181818 });
     const base = new THREE.Mesh(baseGeometry, baseMaterial);
     laptopGroup.add(base);
     
@@ -47,7 +47,7 @@ function initLaptop() {
     const keyboardMaterial = new THREE.MeshBasicMaterial({ color: 0x222222 });
     const keyboard = new THREE.Mesh(keyboardGeometry, keyboardMaterial);
     keyboard.rotation.x = -Math.PI / 2;
-    keyboard.position.y = 0.11;
+    keyboard.position.y = 0.07;
     base.add(keyboard);
     
     // Add key grid
@@ -56,17 +56,17 @@ function initLaptop() {
             const keyGeometry = new THREE.BoxGeometry(0.18, 0.02, 0.18);
             const keyMaterial = new THREE.MeshPhongMaterial({ color: 0x111111 });
             const key = new THREE.Mesh(keyGeometry, keyMaterial);
-            key.position.set(-1.3 + j * 0.23, 0.13, -0.8 + i * 0.25);
+            key.position.set(-1.3 + j * 0.23, .07, -0.8 + i * 0.25);
             base.add(key);
         }
     }
 
     //add spacebar
-    const spaceGeometry = new THREE.BoxGeometry(1.2, 0.18, 0.07);
+    const spaceGeometry = new THREE.BoxGeometry(1, 0.18, 0.07);
     const spaceMaterial = new THREE.MeshPhongMaterial({ color: 0x111111 });
     const space = new THREE.Mesh(spaceGeometry, spaceMaterial);
     space.rotation.x = -Math.PI / 2;
-    space.position.y = 0.111;
+    space.position.y = 0.06;
     space.position.z = 0.2;
     base.add(space);
     
@@ -75,13 +75,13 @@ function initLaptop() {
     const trackpadMaterial = new THREE.MeshPhongMaterial({ color: 0x111111 });
     const trackpad = new THREE.Mesh(trackpadGeometry, trackpadMaterial);
     trackpad.rotation.x = -Math.PI / 2;
-    trackpad.position.y = 0.111;
+    trackpad.position.y = 0.075;
     trackpad.position.z = 0.6;
     base.add(trackpad);
     
     // Laptop screen
     const screenGeometry = new THREE.BoxGeometry(3, 2, 0.1);
-    const screenMaterial = new THREE.MeshPhongMaterial({ color: 0x333333 });
+    const screenMaterial = new THREE.MeshPhongMaterial({ color: 0x181818 });
     const screen = new THREE.Mesh(screenGeometry, screenMaterial);
     
     // Create a text canvas
@@ -119,7 +119,9 @@ function initLaptop() {
     // Set initial screen angle
     hingeGroup.rotation.x = -Math.PI / 6; // Slightly open by default
     
+    // Initial position and rotation of the laptop - tilted down to show more keyboard
     laptopGroup.position.y = -0.3; // Position slightly higher on the screen
+    laptopGroup.rotation.x = 0.3; // Added initial tilt to show more of the keyboard
     scene.add(laptopGroup);
     
     // Text animation variables
@@ -129,11 +131,10 @@ function initLaptop() {
         "Student @",
         ">Ohio State"
     ];
-    const secondLines = [
-        "Student @",
-        ">Ohio State"
-    ];
-    
+
+    // Second set of lines (kept the same as the original)
+    const secondLines = lines;
+
     let currentText = "";
     let targetText = "";
     let currentLineIndex = 0;
@@ -223,7 +224,7 @@ function initLaptop() {
             const closedRatio = relativeScroll; 
            
             const openRotation = -Math.PI / 6; 
-            const closedRotation = 3; // approx Closed position (screen flush with chassis)
+            const closedRotation = 2.5; // approx Closed position (screen flush with chassis)
             
             // Linear interpolation between open and closed positions based on scroll
             hingeGroup.rotation.x = openRotation + (closedRatio * (closedRotation - openRotation));
@@ -254,31 +255,40 @@ function initLaptop() {
                 // Typing animation
                 if (charIndex < currentLines[currentLineIndex].length) {
                     charIndex++;
-                    targetText = currentLineIndex === 0 
-                        ? currentLines[0].substring(0, charIndex)
-                        : currentLines[0] + '\n' + currentLines[1].substring(0, charIndex);
-                } else if (currentLineIndex < 1) {
+                    // Create current text based on completed lines and current line being typed
+                    let newText = "";
+                    for (let i = 0; i < currentLineIndex; i++) {
+                        newText += currentLines[i] + '\n';
+                    }
+                    newText += currentLines[currentLineIndex].substring(0, charIndex);
+                    targetText = newText;
+                } else if (currentLineIndex < currentLines.length - 1) {
                     // Move to next line
                     currentLineIndex++;
                     charIndex = 0;
-                } else if (timer > 1) {  // Pause at the end of typing
+                } else if (timer > 1) {  // Pause at the end of typing all lines
                     // Prepare for deleting
                     isTyping = false;
                     timer = 0;
-                    charIndex = currentLines[1].length;
+                    charIndex = currentLines[currentLines.length - 1].length;
                 }
             } else {
-                // Deleting animation
-                if (charIndex > 0 && currentLineIndex === 1) {
+                // Deleting animation - delete lines in reverse order
+                if (charIndex > 0) {
                     charIndex--;
-                    targetText = currentLines[0] + '\n' + currentLines[1].substring(0, charIndex);
+                    
+                    // Build current text with completed lines and current partial line
+                    let newText = "";
+                    for (let i = 0; i < currentLineIndex; i++) {
+                        newText += currentLines[i] + '\n';
+                    }
+                    newText += currentLines[currentLineIndex].substring(0, charIndex);
+                    targetText = newText;
                 } else if (currentLineIndex > 0) {
+                    // Move to previous line
                     currentLineIndex--;
-                    charIndex = currentLines[0].length;
-                } else if (charIndex > 0) {
-                    charIndex--;
-                    targetText = currentLines[0].substring(0, charIndex);
-                } else if (timer > 1) {  // Pause at the end of deleting
+                    charIndex = currentLines[currentLineIndex].length;
+                } else if (timer > 1) {  // Pause at the end of deleting all lines
                     // Switch to the other set of lines and start typing again
                     isTyping = true;
                     isFirstSet = !isFirstSet;
@@ -296,7 +306,8 @@ function initLaptop() {
         // Add subtle passive movement to indicate interactivity
         if (!isDragging) {
             laptopGroup.rotation.y = Math.sin(time * 0.5) * 0.1;
-            //laptopGroup.rotation.x = Math.sin(time * 0.3) * 0.05 - 0.1; // Slight tilt
+            // Modified to preserve the downward tilt while still allowing subtle animation
+            laptopGroup.rotation.x = Math.sin(time * 0.3) * 0.05 + 0.3; // Maintain downward tilt
         }
         
         requestAnimationFrame(animate);
