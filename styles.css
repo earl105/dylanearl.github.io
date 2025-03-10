@@ -16,7 +16,7 @@ body {
 /* Fixed Navigation */
 .fixed-nav {
     position: fixed;
-    top: 20px;
+    top: 50px;
     left: 0;
     width: 100%;
     display: flex;
@@ -155,12 +155,60 @@ body {
 /* About Page Styles */
 .about-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     grid-gap: 20px;
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
+    aspect-ratio: 6/2; /* This helps maintain the overall grid proportion */
 }
+
+.name-card {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+}
+
+.clubs-card {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+
+/* Right column - About Me spans 2 rows */
+.about-me-card {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+}
+
+/* Middle bottom container - holds both location and eagle cards */
+.middle-bottom-container {
+    grid-column: 2;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+}
+
+.location-card, .eagle-card {
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    border-radius: 8px;
+    padding: 1rem;
+    height: 100%;
+}
+
+.location-icon, .eagle-icon {
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1/1; 
+}
+
 
 .about-card {
     background-color: #333;
@@ -168,6 +216,11 @@ body {
     padding: 1.5rem;
     color: white;
     box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease-in-out;
+}
+
+.about-card:hover{
+    transform: scale(1.025);
 }
 
 .about-card h2 {
