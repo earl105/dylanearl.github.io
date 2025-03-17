@@ -470,7 +470,7 @@ body {
 .contact-container {
     display: flex;
     justify-content: space-between;
-    width: 90%;
+    width: 70%;
     max-width: 1200px;
     margin: 0 auto;
     gap: 50px;
