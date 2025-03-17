@@ -1,4 +1,5 @@
 
-make contact section, following the format of the provided screenshot.
 make scroll/movement/rotation transition when rotating betweeen project cards
+add checkboxes for contact page to determine why they want to contact: connect with me, commission, request resume, job opportunity, etc. (maybe add custom other option)
+make submit button email my personal email with the form's info using a premade template such as: (Name) has requested to contact you! They are interested in (checkbox options). Contact them at (email) or (phone number).
 

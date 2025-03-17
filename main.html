@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <script src="laptopAnimation.js"></script>
     <script src="pageScroll.js"></script>
+    <script src="contactForm.js"></script>
 </head>
 <body>
     <!-- Fixed Navigation -->
@@ -239,17 +240,46 @@
                 <h2>Contact Me</h2>
                 <p>(request resume)</p>
             </div>
-            <form class="contact-form">
+            <!-- Replace with Formspree form ID below -->
+            <form class="contact-form" id="contactForm" action="https://formspree.io/f/xrbpbydl" method="POST">
                 <div class="form-group">
-                    <input type="text" id="fullName" placeholder="Full Name" required>
+                    <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" id="email" placeholder="Email" required>
+                    <input type="email" id="email" name="email" placeholder="Email" required>
                 </div>
                 <div class="form-group">
-                    <input type="tel" id="phone" placeholder="Phone Number">
+                    <input type="tel" id="phone" name="phone" placeholder="Phone Number">
                 </div>
-                <button type="submit" class="submit-btn">Submit</button>
+                
+                <div class="checkbox-group">
+                    <p>Reason for contact:</p>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="connect" name="reason" value="Connect">
+                        <label for="connect">Connect with me</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="commission" name="reason" value="Commission">
+                        <label for="commission">Commission</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="resume" name="reason" value="Resume">
+                        <label for="resume">Request resume</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="job" name="reason" value="Job">
+                        <label for="job">Job opportunity</label>
+                    </div>
+                    <div class="checkbox-option custom-option">
+                        <input type="checkbox" id="other" name="reason" value="Other">
+                        <label for="other">Other:</label>
+                        <input type="text" id="otherReason" name="otherReason" placeholder="Please specify">
+                    </div>
+                </div>
+                
+                <input type="hidden" name="formattedMessage" id="formattedMessage">
+                <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
+                <div id="status" class="form-status"></div>
             </form>
         </div>
         <div class="contact-right">
@@ -269,9 +299,7 @@
             </div>
         </div>
     </div>
-</div>
-    
-    
+</div>    
    
 </body>
 </html>
