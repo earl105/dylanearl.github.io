@@ -199,3 +199,47 @@ input[type="checkbox"] {
     background-color: #7f8c8d;
     cursor: not-allowed;
 }
+/* Mobile Contact Styles */
+
+@media only screen and (max-width: 768px) {
+    .contact-container {
+        flex-direction: column;
+        width: 100%;
+        gap: 20px;
+    }
+    
+    .contact-left {
+        width: 100%;
+    }
+    
+    .contact-header {
+        padding: 15px;
+    }
+    
+    .contact-header h2 {
+        font-size: 2rem;
+        text-align: center;
+    }
+    
+    .form-group input {
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+    
+    .checkbox-group {
+        padding: 12px;
+    }
+    
+    .checkbox-option {
+        font-size: 0.95rem;
+    }
+    
+    .submit-btn {
+        padding: 12px;
+        font-size: 1.1rem;
+    }
+    
+    .contact-social-links {
+        display: none;
+    }
+}

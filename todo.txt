@@ -1,5 +1,12 @@
 
-make scroll/movement/rotation transition when rotating betweeen project cards
-add checkboxes for contact page to determine why they want to contact: connect with me, commission, request resume, job opportunity, etc. (maybe add custom other option)
-make submit button email my personal email with the form's info using a premade template such as: (Name) has requested to contact you! They are interested in (checkbox options). Contact them at (email) or (phone number).
 
+i am in the process of making my website mobile-friendly. i have screenshots that outline how i want the site to look on mobile. you cant simply change the css and have that be it. the mobile functionality is specifically different. here are changes that still need done: 
+-nav bar on bottom with icons instead of text on mobile
+-single project displayed at a time is good, but the rotation between the projects is wrong on mobile
+-skills not on project tab on mobile 
+-laptop off center on mobile
+-club involvement is not on about me on mobile (it should be)
+-make it so there is no images for job experiences on mobile view
+-make job experiences fit a single screen on phone (follow the screenshot)
+-make scroll magnetism work on mobile (i think this one is broken because of the fact that the jobs part is broken)
+-

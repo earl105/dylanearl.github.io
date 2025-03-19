@@ -4,23 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dylan Earl - Portfolio</title>
-    <!--I separated this so theyre shorter for AI modification, IK this isnt normal practice-->
+    <!-- Base CSS -->
     <link rel="stylesheet" href="css/base.css">
+    <!-- Desktop CSS -->
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/about.css">
     <link rel="stylesheet" href="css/projects.css">
     <link rel="stylesheet" href="css/experience.css">
     <link rel="stylesheet" href="css/contact.css">
-    <!--I separated this so theyre shorter for AI modification-->
+    <!-- Mobile CSS - these will override desktop styles -->
+    <link rel="stylesheet" href="css/mobile-base.css">
+    <link rel="stylesheet" href="css/mobile-home.css">
+    <link rel="stylesheet" href="css/mobile-about.css">
+    <link rel="stylesheet" href="css/mobile-projects.css">
+    <link rel="stylesheet" href="css/mobile-experience.css">
+    <link rel="stylesheet" href="css/mobile-contact.css">
+    
     <script src="js/laptopAnimation.js"></script>
     <script src="js/pageScroll.js"></script>
     <script src="js/contactForm.js"></script>
-    <script src="js/pageScroll.js"></script>
     <script src="js/carousel.js"></script>
+    <script src="js/mobileDetect.js"></script>
 </head>
 <body>
-    <!-- Fixed Navigation -->
-    <div class="fixed-nav">
+    <!-- Desktop Navigation -->
+    <div class="fixed-nav desktop-only">
         <div class="nav-container">
             <a href="#section1" class="nav-link">Home</a>
             <a href="#section2" class="nav-link">About</a>
@@ -30,12 +38,32 @@
         </div>
     </div>
     
+    <!-- Mobile Navigation (Bottom) -->
+    <div class="mobile-nav mobile-only">
+        <div class="mobile-nav-container">
+            <a href="#section1" class="mobile-nav-link">
+                <img src="images/home-icon.png" alt="Home" class="mobile-nav-icon">
+            </a>
+            <a href="#section2" class="mobile-nav-link">
+                <img src="images/about-icon.png" alt="About" class="mobile-nav-icon">
+            </a>
+            <a href="#section3" class="mobile-nav-link">
+                <img src="images/projects-icon.png" alt="Projects" class="mobile-nav-icon">
+            </a>
+            <a href="#section4" class="mobile-nav-link">
+                <img src="images/experience-icon.png" alt="Experience" class="mobile-nav-icon">
+            </a>
+            <a href="#section5" class="mobile-nav-link">
+                <img src="images/contact-icon.png" alt="Contact" class="mobile-nav-icon">
+            </a>
+        </div>
+    </div>
+    
     <!-- Home Section -->
     <div class="section" id="section1">
         <div class="home-content">
             <div class="name-container">
                 <h1 class="name-title">Dylan Earl</h1>
-                <!-- In main.html, replace the social-icons div with this: -->
                 <div class="social-icons">
                     <a href="https://www.linkedin.com/in/dylanearl/" class="social-link"><img src="images/linkedinLogo.png" alt="LinkedIn" class="social-icon"></a>
                     <a href="https://github.com/earl105" class="social-link"><img src="images/githubLogo.png" alt="GitHub" class="social-icon"></a>
@@ -49,164 +77,182 @@
         </div>
     </div>
     
-<!-- About Section -->
-<div class="section" id="section2">
-    <div class="about-grid">
-        <!-- Left box (Dylan Earl) - spans 2 rows -->
-        <div class="about-card name-card">
-            <h2>Dylan Earl</h2><br>
-            <p>-Software Developer</p>
-            <p>-Computer Science and Engineering</p>
-            <p>-The Ohio State University</p>
-            <p>-Looking for internship experience</p>
-            <p>-Favorite Language is Java</p>
-            <p>-Eagle Scout</p>
-            <br><br>
-            <div class="osu-logo-container">
-                <img src="images/osucoeLogo.png" alt="The Ohio State University College of Engineering" class="osu-logo">
-            </div>
-
-        </div>
-        
-        <!-- Middle top box (Clubs) -->
-        <div class="about-card clubs-card">
-            <h2>Involvement</h2>
-            <p>-AI Robotics Club</p>
-            <p>-Block O Club</p>
-            <p>-Buck-I-Watch Club</p>
-            <p>-Choose Ohio First @ OSU</p>
-        </div>
-        
-        <!-- Right box (About Me) - spans 2 rows -->
-        <div class="about-card about-me-card">
-            <h2>About Me</h2>
-            <p>As a second-year student at Ohio State University majoring in Computer Science and Engineering, I am actively seeking a summer internship where I can apply my skills in programming, hardware integration, and problem-solving.
-                </br></br> Additionally, I am well-versed in additional software such as Git, Autodesk Inventor, Fusion 360, Onshape, and Arduino IDE. 
-                </br></br> Outside of tech, I also enjoy outdoor activities like camping, kayaking, canoeing, rock climbing, and sharpshooting.
-            </p>
-        </div>
-        
-        <!-- Middle bottom - contains two cards side by side -->
-        <div class="middle-bottom-container">
-            <!-- Columbus, Ohio -->
-            <div class="about-card location-card">
-                <div class="location-icon">
-                    <img src="images/locationIcon.png" alt="Location" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2230%22 height=%2230%22 viewBox=%220 0 24 24%22><path fill=%22white%22 d=%22M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z%22/></svg>';">
+    <!-- About Section -->
+    <div class="section" id="section2">
+        <div class="about-grid">
+            <!-- Left box (Dylan Earl) -->
+            <div class="about-card name-card">
+                <h2>Dylan Earl</h2><br>
+                <p>-Aspiring Software Developer</p>
+                <p>-Computer Science and Engineering</p>
+                <p>-The Ohio State University</p>
+                <p>-Eagle Scout</p>
+                <div class="osu-logo-container">
+                    <img src="images/osucoeLogo.png" alt="The Ohio State University College of Engineering" class="osu-logo">
                 </div>
-                <p>Columbus, Ohio</p>
             </div>
             
-            <!-- About my Eagle Scout -->
-            <div class="about-card eagle-card">
-                <div class="eagle-icon">
-                    <img src="images/eagleScoutIcon.png" alt="Eagle Scout" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2230%22 height=%2230%22 viewBox=%220 0 24 24%22><circle cx=%2212%22 cy=%2212%22 r=%2210%22 fill=%22none%22 stroke=%22white%22 stroke-width=%222%22/></svg>';">
+            <!-- Middle top box (Clubs) -->
+            <div class="about-card clubs-card desktop-only">
+                <h2>Involvement</h2>
+                <p>-AI Robotics Club</p>
+                <p>-Block O Club</p>
+                <p>-Buck-I-Watch Club</p>
+                <p>-Choose Ohio First @ OSU</p>
+            </div>
+            
+            <!-- Mobile clubs box -->
+            <div class="about-card clubs-card-mobile mobile-only">
+                <h2>Involvement</h2>
+                <p>-AI Robotics Club</p>
+                <p>-Block O</p>
+                <p>-Buck-I-Watch Club</p>
+                <p>-Choose Ohio First Scholarship</p>
+            </div>
+            
+            <!-- Right box (About Me) -->
+            <div class="about-card about-me-card">
+                <h2>About Me</h2>
+                <p>I have a passion for hands-on problem solving and creativity, specifically through programming, robotics, 3D printing, and CAD. Outside of tech, I also enjoy outdoor activities like camping, kayaking, canoeing, rock climbing, sharpshooting, along with skeet shooting and cooking.</p>
+            </div>
+            
+            <!-- Middle bottom - contains two cards side by side -->
+            <div class="middle-bottom-container desktop-only">
+                <!-- Columbus, Ohio -->
+                <div class="about-card location-card">
+                    <div class="location-icon">
+                        <img src="images/locationIcon.png" alt="Location" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2230%22 height=%2230%22 viewBox=%220 0 24 24%22><path fill=%22white%22 d=%22M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z%22/></svg>';">
+                    </div>
+                    <p>Columbus, Ohio</p>
                 </div>
-                <p>About my Eagle Project</p>
+                
+                <!-- About my Eagle Scout -->
+                <div class="about-card eagle-card">
+                    <div class="eagle-icon">
+                        <img src="images/eagleScoutIcon.png" alt="Eagle Scout" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2230%22 height=%2230%22 viewBox=%220 0 24 24%22><circle cx=%2212%22 cy=%2212%22 r=%2210%22 fill=%22none%22 stroke=%22white%22 stroke-width=%222%22/></svg>';">
+                    </div>
+                    <p>About my Eagle Project</p>
+                </div>
             </div>
         </div>
+        
+        <!-- Skills section - desktop only -->
+        <div class="tech-icons desktop-only">
+            <div class="tech-icon"><img src="images/javaLogo.png" alt="Java" class="tech-icon-img"></div>
+            <div class="tech-icon"><img src="images/cLogo.png" alt="C" class="tech-icon-img"></div>
+            <div class="tech-icon"><img src="images/asmLogo.png" alt="x86-64 Assembly" class="tech-icon-img"></div>
+            <div class="tech-icon"><img src="images/matlabLogo.png" alt="MATLAB" class="tech-icon-img"></div>
+            <div class="tech-icon"><img src="images/htmlLogo.png" alt="HTML" class="tech-icon-img"></div>
+            <div class="tech-icon"><img src="images/cssLogo.png" alt="CSS" class="tech-icon-img"></div>
+            <div class="tech-icon"><img src="images/xmlLogo.png" alt="XML" class="tech-icon-img"></div>
+            <div class="tech-icon"><img src="images/arduinoLogo.png" alt="Arduino" class="tech-icon-img"></div>
+            <div class="tech-icon"><img src="images/onshapeLogo.png" alt="Onshape" class="tech-icon-img"></div>
+            <div class="tech-icon"><img src="images/fusionLogo.png" alt="Fusion 360" class="tech-icon-img"></div>
+            <div class="tech-icon"><img src="images/inventorLogo.png" alt="Autodesk Inventor" class="tech-icon-img"></div>
+            <div class="tech-icon"><img src="images/excelLogo.png" alt="Excel" class="tech-icon-img"></div>
+        </div>
     </div>
-    
-    <!-- Keep the tech-icons div as it is -->
-    <div class="tech-icons">
-        <div class="tech-icon"><img src="images/javaLogo.png" alt="Java" class="tech-icon-img"></div>
-        <div class="tech-icon"><img src="images/cLogo.png" alt="C" class="tech-icon-img"></div>
-        <div class="tech-icon"><img src="images/asmLogo.png" alt="x86-64 Assembly" class="tech-icon-img"></div>
-        <div class="tech-icon"><img src="images/matlabLogo.png" alt="MATLAB" class="tech-icon-img"></div>
-        <div class="tech-icon"><img src="images/htmlLogo.png" alt="HTML" class="tech-icon-img"></div>
-        <div class="tech-icon"><img src="images/cssLogo.png" alt="CSS" class="tech-icon-img"></div>
-        <div class="tech-icon"><img src="images/xmlLogo.png" alt="XML" class="tech-icon-img"></div>
-        <div class="tech-icon"><img src="images/arduinoLogo.png" alt="Arduino" class="tech-icon-img"></div>
-        <div class="tech-icon"><img src="images/onshapeLogo.png" alt="Onshape" class="tech-icon-img"></div>
-        <div class="tech-icon"><img src="images/fusionLogo.png" alt="Fusion 360" class="tech-icon-img"></div>
-        <div class="tech-icon"><img src="images/inventorLogo.png" alt="Autodesk Inventor" class="tech-icon-img"></div>
-        <div class="tech-icon"><img src="images/excelLogo.png" alt="Excel" class="tech-icon-img"></div>
-    </div>
-</div>
     
     <!-- Projects Section -->
     <div class="section" id="section3">
-        <!-- In main.html, update the projects-container div: -->
-<div class="projects-container">
-    <div class="project-card" data-index="0">
-        <div class="project-header blue"></div>
-        <div class="project-body">
-            <div class="project-title">
-                Project 1
-                <span>
-                    <span class="project-icon"><img src="images/javaLogo.png" alt="Java" class="tech-logo"></span>
-                    <span class="project-icon"><img src="images/htmlLogo.png" alt="HTML" class="tech-logo"></span>
-                </span>
+        <!-- Skills section - mobile only (moved from About) -->
+        <div class="mobile-skills mobile-only">
+            <h2>Skills</h2>
+            <div class="tech-icons-mobile">
+                <div class="tech-icon"><img src="images/javaLogo.png" alt="Java" class="tech-icon-img"></div>
+                <div class="tech-icon"><img src="images/htmlLogo.png" alt="HTML" class="tech-icon-img"></div>
+                <div class="tech-icon"><img src="images/cssLogo.png" alt="CSS" class="tech-icon-img"></div>
+                <div class="tech-icon"><img src="images/xmlLogo.png" alt="XML" class="tech-icon-img"></div>
+                <div class="tech-icon"><img src="images/cLogo.png" alt="C" class="tech-icon-img"></div>
+                <div class="tech-icon"><img src="images/asmLogo.png" alt="x86-64 Assembly" class="tech-icon-img"></div>
+                <div class="tech-icon"><img src="images/matlabLogo.png" alt="MATLAB" class="tech-icon-img"></div>
+                <div class="tech-icon"><img src="images/arduinoLogo.png" alt="Arduino" class="tech-icon-img"></div>
+                <div class="tech-icon"><img src="images/onshapeLogo.png" alt="Onshape" class="tech-icon-img"></div>
+                <div class="tech-icon"><img src="images/fusionLogo.png" alt="Fusion 360" class="tech-icon-img"></div>
+                <div class="tech-icon"><img src="images/inventorLogo.png" alt="Autodesk Inventor" class="tech-icon-img"></div>
+                <div class="tech-icon"><img src="images/excelLogo.png" alt="Excel" class="tech-icon-img"></div>
             </div>
-            <p>Project 1 Sample Description. This is my first project showcasing my skills in web development. It includes responsive design and interactive elements.</p>
+        </div>
+        
+        <h2 class="mobile-only projects-title">Projects</h2>
+        
+        <div class="projects-container">
+            <div class="project-card" data-index="0">
+                <div class="project-header blue"></div>
+                <div class="project-body">
+                    <div class="project-title">
+                        Project 1
+                        <span>
+                            <span class="project-icon"><img src="images/javaLogo.png" alt="Java" class="tech-logo"></span>
+                            <span class="project-icon"><img src="images/htmlLogo.png" alt="HTML" class="tech-logo"></span>
+                        </span>
+                    </div>
+                    <p>Project 1 Sample Description. This is my first project showcasing my skills in web development. It includes responsive design and interactive elements.</p>
+                </div>
+            </div>
+            
+            <div class="project-card" data-index="1">
+                <div class="project-header green"></div>
+                <div class="project-body">
+                    <div class="project-title">
+                        Project 2
+                        <span>
+                            <span class="project-icon"><img src="images/javaLogo.png" alt="Java" class="tech-logo"></span>
+                            <span class="project-icon"><img src="images/htmlLogo.png" alt="HTML" class="tech-logo"></span>
+                        </span>
+                    </div>
+                    <p>Project 2 Sample Description. Blah blah blah blah blah blah blah blah Blah blah blah blah blah blah blah blah.</p>
+                </div>
+            </div>
+            
+            <div class="project-card" data-index="2">
+                <div class="project-header orange"></div>
+                <div class="project-body">
+                    <div class="project-title">
+                        Project 3
+                        <span>
+                            <span class="project-icon"><img src="images/javaLogo.png" alt="Java" class="tech-logo"></span>
+                            <span class="project-icon"><img src="images/htmlLogo.png" alt="HTML" class="tech-logo"></span>
+                        </span>
+                    </div>
+                    <p>Project 3 Sample Description. An Arduino-based smart home system that monitors temperature, humidity, and light levels to automate home appliances.</p>
+                </div>
+            </div>
+            
+            <div class="project-card hidden" data-index="3">
+                <div class="project-header purple"></div>
+                <div class="project-body">
+                    <div class="project-title">
+                        Project 4
+                        <span>
+                            <span class="project-icon"><img src="images/javaLogo.png" alt="Java" class="tech-logo"></span>
+                            <span class="project-icon"><img src="images/htmlLogo.png" alt="HTML" class="tech-logo"></span>
+                        </span>
+                    </div>
+                    <p>Project 4 Sample Description. A machine learning model that analyzes social media sentiment to predict market trends for small businesses.</p>
+                </div>
+            </div>
+            
+            <div class="project-card hidden" data-index="4">
+                <div class="project-header red"></div>
+                <div class="project-body">
+                    <div class="project-title">
+                        Project 5
+                        <span>
+                            <span class="project-icon"><img src="images/javaLogo.png" alt="Java" class="tech-logo"></span>
+                            <span class="project-icon"><img src="images/htmlLogo.png" alt="HTML" class="tech-logo"></span>
+                        </span>
+                    </div>
+                    <p>Project 5 Sample Description. A 3D-printed robot arm controlled by custom software that can be programmed to perform repetitive tasks with precision.</p>
+                </div>
+            </div>
+            
+            <div class="arrow-nav arrow-left">←</div>
+            <div class="arrow-nav arrow-right">→</div>
         </div>
     </div>
     
-    <div class="project-card" data-index="1">
-        <div class="project-header green"></div>
-        <div class="project-body">
-            <div class="project-title">
-                Project 2
-                <span>
-                    <span class="project-icon"><img src="images/javaLogo.png" alt="Java" class="tech-logo"></span>
-                    <span class="project-icon"><img src="images/htmlLogo.png" alt="HTML" class="tech-logo"></span>
-                
-                </span>
-            </div>
-            <p>Project 2 Sample Description. A mobile application built with React Native that helps users track their daily tasks and set reminders for important events.</p>
-        </div>
-    </div>
-    
-    <div class="project-card" data-index="2">
-        <div class="project-header orange"></div>
-        <div class="project-body">
-            <div class="project-title">
-                Project 3
-                <span>
-                    <span class="project-icon"><img src="images/javaLogo.png" alt="Java" class="tech-logo"></span>
-                    <span class="project-icon"><img src="images/htmlLogo.png" alt="HTML" class="tech-logo"></span>
-                
-                </span>
-            </div>
-            <p>Project 3 Sample Description. An Arduino-based smart home system that monitors temperature, humidity, and light levels to automate home appliances.</p>
-        </div>
-    </div>
-    
-    <div class="project-card hidden" data-index="3">
-        <div class="project-header purple"></div>
-        <div class="project-body">
-            <div class="project-title">
-                Project 4
-                <span>
-                    <span class="project-icon"><img src="images/javaLogo.png" alt="Java" class="tech-logo"></span>
-                    <span class="project-icon"><img src="images/htmlLogo.png" alt="HTML" class="tech-logo"></span>
-                
-                </span>
-            </div>
-            <p>Project 4 Sample Description. A machine learning model that analyzes social media sentiment to predict market trends for small businesses.</p>
-        </div>
-    </div>
-    
-    <div class="project-card hidden" data-index="4">
-        <div class="project-header red"></div>
-        <div class="project-body">
-            <div class="project-title">
-                Project 5
-                <span>
-                    <span class="project-icon"><img src="images/javaLogo.png" alt="Java" class="tech-logo"></span>
-                    <span class="project-icon"><img src="images/htmlLogo.png" alt="HTML" class="tech-logo"></span>
-                
-                </span>
-            </div>
-            <p>Project 5 Sample Description. A 3D-printed robot arm controlled by custom software that can be programmed to perform repetitive tasks with precision.</p>
-        </div>
-    </div>
-    
-    <div class="arrow-nav arrow-left">←</div>
-    <div class="arrow-nav arrow-right">→</div>
-</div>
-    </div>
-    
-   <!-- Experience Section -->
+    <!-- Experience Section -->
 <div class="section" id="section4">
     <div class="experience-container">
         <div class="job-card">
@@ -239,75 +285,71 @@
     </div>
 </div>
     
-
-
-<!-- Contact Section -->
-<div class="section" id="section5">
-    <div class="contact-container">
-        <div class="contact-left">
-            <div class="contact-header">
-                <h2>Contact Me</h2>
+    <!-- Contact Section -->
+    <div class="section" id="section5">
+        <div class="contact-container">
+            <div class="contact-left">
+                <div class="contact-header">
+                    <h2>Contact Me</h2>
+                </div>
+                <form class="contact-form" id="contactForm" action="https://formspree.io/f/xrbpbydl" method="POST">
+                    <div class="form-group">
+                        <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone" placeholder="Phone Number">
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <p>Reason for contact:</p>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="connect" name="reason" value="Connect">
+                            <label for="connect">Connect with me</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="commission" name="reason" value="Commission">
+                            <label for="commission">Commission</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="resume" name="reason" value="Resume">
+                            <label for="resume">Request resume</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="job" name="reason" value="Job">
+                            <label for="job">Job opportunity</label>
+                        </div>
+                        <div class="checkbox-option custom-option">
+                            <input type="checkbox" id="other" name="reason" value="Other">
+                            <label for="other">Other:</label>
+                            <input type="text" id="otherReason" name="otherReason" placeholder="Please specify">
+                        </div>
+                    </div>
+                    
+                    <input type="hidden" name="formattedMessage" id="formattedMessage">
+                    <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
+                    <div id="status" class="form-status"></div>
+                </form>
             </div>
-            <!-- Replace with Formspree form ID below -->
-            <form class="contact-form" id="contactForm" action="https://formspree.io/f/xrbpbydl" method="POST">
-                <div class="form-group">
-                    <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
+            <div class="contact-right desktop-only">
+                <div class="headshot-container">
+                    <img src="images/headshot.jpg" alt="Dylan Earl" class="headshot-img">
                 </div>
-                <div class="form-group">
-                    <input type="email" id="email" name="email" placeholder="Email" required>
+                <div class="contact-social-links">
+                    <a href="https://github.com/earl105" class="contact-social-link">
+                        <img src="images/githubLogo.png" alt="GitHub" class="contact-social-icon">
+                    </a>
+                    <a href="https://www.linkedin.com/in/dylanearl/" class="contact-social-link">
+                        <img src="images/linkedinLogo.png" alt="LinkedIn" class="contact-social-icon">
+                    </a>
+                    <a href="mailto:earl.105@osu.edu" class="contact-social-link">
+                        <img src="images/emailLogo.png" alt="Email" class="contact-social-icon">
+                    </a>
                 </div>
-                <div class="form-group">
-                    <input type="tel" id="phone" name="phone" placeholder="Phone Number">
-                </div>
-                
-                <div class="checkbox-group">
-                    <p>Reason for contact:</p>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="connect" name="reason" value="Connect">
-                        <label for="connect">Connect with me</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="commission" name="reason" value="Commission">
-                        <label for="commission">Commission</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="resume" name="reason" value="Resume">
-                        <label for="resume">Request resume</label>
-                    </div>
-                    <div class="checkbox-option">
-                        <input type="checkbox" id="job" name="reason" value="Job">
-                        <label for="job">Job opportunity</label>
-                    </div>
-                    <div class="checkbox-option custom-option">
-                        <input type="checkbox" id="other" name="reason" value="Other">
-                        <label for="other">Other:</label>
-                        <input type="text" id="otherReason" name="otherReason" placeholder="Please specify">
-                    </div>
-                </div>
-                
-                <input type="hidden" name="formattedMessage" id="formattedMessage">
-                <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
-                <div id="status" class="form-status"></div>
-            </form>
-        </div>
-        <div class="contact-right">
-            <div class="headshot-container">
-                <img src="images/headshot.jpg" alt="Dylan Earl" class="headshot-img">
-            </div>
-            <div class="contact-social-links">
-                <a href="https://github.com/earl105" class="contact-social-link">
-                    <img src="images/githubLogo.png" alt="GitHub" class="contact-social-icon">
-                </a>
-                <a href="https://www.linkedin.com/in/dylanearl/" class="contact-social-link">
-                    <img src="images/linkedinLogo.png" alt="LinkedIn" class="contact-social-icon">
-                </a>
-                <a href="mailto:earl.105@osu.edu" class="contact-social-link">
-                    <img src="images/emailLogo.png" alt="Email" class="contact-social-icon">
-                </a>
             </div>
         </div>
     </div>
-</div>    
-   
 </body>
 </html>

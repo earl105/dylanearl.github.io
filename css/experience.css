@@ -59,3 +59,37 @@
     position: absolute;
     left: -1rem;
 }
+/* Mobile Experience Styles */
+
+@media only screen and (max-width: 768px) {
+    .experience-container {
+        width: 100%;
+        gap: 15px;
+    }
+    
+    .job-card {
+        padding: 15px;
+    }
+    
+    .job-title {
+        font-size: 1.3rem;
+    }
+    
+    .job-details {
+        font-size: 0.9rem;
+    }
+    
+    .job-bullet {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+    }
+    
+    .job-content {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .job-description {
+        width: 100%;
+    }
+}

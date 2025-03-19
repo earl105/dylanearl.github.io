@@ -124,3 +124,48 @@
     grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
 }
+
+
+/* Mobile About Styles */
+
+@media only screen and (max-width: 768px) {
+    .about-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        aspect-ratio: auto;
+    }
+    
+    .name-card, .clubs-card-mobile, .about-me-card {
+        width: 100%;
+    }
+    
+    .about-card {
+        padding: 15px;
+    }
+    
+    .about-card h2 {
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+    }
+    
+    .about-card p {
+        font-size: 0.95rem;
+        margin-bottom: 8px;
+    }
+    
+    .osu-logo-container {
+        margin-top: 10px;
+    }
+    
+    .osu-logo {
+        width: 60%;
+        max-width: 180px;
+        margin-top: 10px;
+    }
+    
+    .clubs-card-mobile {
+        margin-bottom: 0;
+    }
+}

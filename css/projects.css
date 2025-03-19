@@ -126,3 +126,81 @@
     background-color: rgba(255, 255, 255, 0.7);
     transform: translateY(-50%) scale(1.1);
 }
+
+
+/* Mobile Projects Styles */
+
+@media only screen and (max-width: 768px) {
+    .projects-title {
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    
+    .mobile-skills {
+        margin-bottom: 30px;
+    }
+    
+    .mobile-skills h2 {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    
+    .tech-icons-mobile {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    
+    .tech-icon {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1/1;
+    }
+    
+    .projects-container {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        flex-wrap: nowrap;
+        position: relative;
+    }
+    
+    .project-card {
+        width: 85%;
+        height: 350px;
+        position: relative;
+        top: auto;
+        margin: 0 auto;
+    }
+    
+    .project-card:not([data-index="0"]) {
+        display: none;
+    }
+    
+    .project-header {
+        height: 30%;
+    }
+    
+    .project-body {
+        height: 70%;
+    }
+    
+    .arrow-nav {
+        top: 50%;
+        transform: translateY(-50%);
+        width: 30px;
+        height: 30px;
+        font-size: 1.2rem;
+    }
+    
+    .arrow-left {
+        left: 0;
+    }
+    
+    .arrow-right {
+        right: 0;
+    }
+}
