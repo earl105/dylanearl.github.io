@@ -1,0 +1,61 @@
+/* Experience Page Styles */
+.experience-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.job-card {
+    background-color: #333;
+    border-radius: 8px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.job-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 10px;
+}
+
+.job-card:hover {
+    transform: scale(1.0125);
+}
+
+.job-card:nth-child(1)::before {
+    background-color: #3498db;
+}
+
+.job-card:nth-child(2)::before {
+    background-color: #2ecc71;
+}
+
+.job-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.job-details {
+    margin-bottom: 1rem;
+}
+
+.job-bullet {
+    margin-bottom: 0.5rem;
+    margin-left: 1.5rem;
+    position: relative;
+}
+
+.job-bullet::before {
+    content: '-';
+    position: absolute;
+    left: -1rem;
+}

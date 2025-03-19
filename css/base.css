@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+    height: 100vh;
+    scroll-behavior: smooth;
+    background-color: #1a1a1a;
+    color: white;
+}
+
+/* Fixed Navigation */
+.fixed-nav {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.nav-container {
+    width: 60%;
+    max-width: 500px;
+    background-color: #bdbdbd;
+    border-radius: 8px;
+    padding: 0.8rem;
+    display: flex;
+    justify-content: space-around;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.nav-link {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.3rem 0.6rem;
+    transition: transform 0.2s ease;
+}
+
+.nav-link:hover {
+    transform: scale(1.1);
+}
+
+/* Make each section full screen with alternating background colors */
+.section {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    padding-top: 70px; /* Add padding to account for fixed nav */
+}
+
+/* Alternating background colors for sections */
+.section:nth-child(odd) {
+    background-color: #1a1a1a; /* Darker gray for odd sections (1, 3) */
+}
+
+.section:nth-child(even) {
+    background-color: #2a2a2a; /* Lighter gray for even sections (2, 4) */
+}
+
+/* Content container */
+.content-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
