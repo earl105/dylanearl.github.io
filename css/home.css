@@ -81,3 +81,53 @@
         height: 100%;
     }
 }
+
+/* Update to home.css to fix the laptop centering on mobile */
+@media only screen and (max-width: 768px) {
+    .laptop-container {
+        width: 100%;
+        height: 300px;
+        margin: 0 auto; /* Changed from margin-left: 0 to center it */
+        display: flex;  /* Add flex display */
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+    }
+    
+    .laptop-scene {
+        width: 100%;
+        max-width: 450px; /* Add max-width to maintain proportions */
+        height: 100%;
+    }
+}
+
+/* Update to home.css to fix the laptop centering on mobile */
+@media only screen and (max-width: 768px) {
+    .home-content {
+        flex-direction: column;
+        gap: 20px;
+        padding-top: 20px;
+        align-items: center; /* Ensure all children are centered */
+    }
+    
+    .laptop-container {
+        width: 100%;
+        height: 300px;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative; /* Reset any positioning */
+        left: 0; /* Ensure no leftward shift */
+    }
+    
+    .laptop-scene {
+        width: 100%;
+        height: 100%;
+        max-width: 300px; /* Limit width to ensure it stays centered */
+        margin: 0 auto; /* Center the scene itself */
+        position: relative; /* Reset any positioning */
+        left: 0; /* Ensure no leftward shift */
+        transform: translateX(0); /* Reset any transforms */
+    }
+}

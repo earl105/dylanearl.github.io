@@ -204,3 +204,24 @@
         right: 0;
     }
 }
+
+/* Add this to your projects.css file or mobile-projects.css */
+@media only screen and (max-width: 768px) {
+    .mobile-skills {
+        display: block;
+        margin-bottom: 30px;
+    }
+    
+    .tech-icons-mobile {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    
+    /* Hide the tech icons in the About section on mobile */
+    #section2 .tech-icons {
+        display: none;
+    }
+}

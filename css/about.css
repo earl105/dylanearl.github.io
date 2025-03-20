@@ -169,3 +169,23 @@
         margin-bottom: 0;
     }
 }
+
+/* Mobile About Styles */
+@media only screen and (max-width: 768px) {
+    /* Make sure clubs-card-mobile is visible */
+    .clubs-card-mobile {
+        display: block;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    /* Hide desktop clubs */
+    .desktop-only {
+        display: none;
+    }
+    
+    /* Make sure mobile-only elements are visible */
+    .mobile-only {
+        display: block;
+    }
+}
