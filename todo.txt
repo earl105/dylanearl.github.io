@@ -8,6 +8,3 @@ i am converting my website to be mobile friendly. this is the first change you a
 -project cards are too narrow on mobile
 -single project displayed at a time is good, but the rotation between the projects is wrong on mobile
 -club involvement is out of order on about me on mobile (should be name, about, then involvement)
--make it so there is no images for job experiences on mobile view, make mobile job section look like screenshot
--make job experiences fit a single screen on phone (follow the screenshot, no job images)
--make scroll magnetism work on mobile (i think this one is broken because of the fact that the jobs part is broken)
