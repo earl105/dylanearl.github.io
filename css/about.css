@@ -119,6 +119,11 @@
     object-fit: contain;
 }
 
+.eagle-card{
+    justify-content: center;
+}
+
+
 .location-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -176,7 +181,6 @@
     .clubs-card-mobile {
         display: block;
         width: 100%;
-        margin-bottom: 15px;
     }
     
     /* Hide desktop clubs */
@@ -187,5 +191,34 @@
     /* Make sure mobile-only elements are visible */
     .mobile-only {
         display: block;
+    }
+}
+
+/* Add this to your mobile-about.css file */
+@media only screen and (max-width: 768px) {
+    /* Mobile-specific About Me card content */
+    .about-me-card p {
+        font-size: 0.9rem; /* Slightly smaller text */
+       
+    }
+   
+    /* Hide desktop content and show mobile content */
+    .desktop-about-content {
+        display: none;
+    }
+    
+    .mobile-about-content {
+        display: block;
+    }
+    
+    /* Adjust spacing in mobile About Me section */
+    .about-me-card {
+        padding: 1rem; /* Reduce padding */
+       
+    }
+    
+    /* Remove extra margin from OSU logo container on mobile */
+    .osu-logo-container {
+        margin-top: 5px;
     }
 }

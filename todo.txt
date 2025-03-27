@@ -3,8 +3,8 @@
 
 i am converting my website to be mobile friendly. this is the first change you are to add. reference the screenshot for formatting.
 
--laptop off center on mobile
+-laptop region is too small. if i rotate the laptop i can make it so that it cuts off, that shouldnt be able to happen.
 -skills icons are too low on mobile
--project cards are too narrow on mobile
--single project displayed at a time is good, but the rotation between the projects is wrong on mobile
--club involvement is out of order on about me on mobile (should be name, about, then involvement)
+-project cards are too narrow on mobile, they should take up the whole screen
+-single project displayed at a time is good, but the rotation between the projects is wrong on mobile. it still rotates as if there are three projects on the screen.
+

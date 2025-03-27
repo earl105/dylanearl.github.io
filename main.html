@@ -25,6 +25,7 @@
     <script src="js/contactForm.js"></script>
     <script src="js/carousel.js"></script>
     <script src="js/mobileDetect.js"></script>
+    <script src="js/mobileLaptopAnimation.js"></script>
 </head>
 <body>
     <!-- Desktop Navigation -->
@@ -81,12 +82,31 @@
     <div class="section" id="section2">
         <div class="about-grid">
             <!-- Left box (Dylan Earl) -->
-            <div class="about-card name-card">
+            <div class="about-card name-card desktop-only">
                 <h2>Dylan Earl</h2><br>
-                <p>-Aspiring Software Developer</p>
-                <p>-Computer Science and Engineering</p>
-                <p>-The Ohio State University</p>
-                <p>-Eagle Scout</p>
+             <p>-Software Developer</p>
+             <p>-Computer Science and Engineering</p>
+             <p>-The Ohio State University</p>
+             <p>-Looking for internship experience</p>
+             <p>-Favorite Language is Java</p>
+             <p>-Eagle Scout</p>
+             <br><br>
+                <div class="osu-logo-container">
+                    <img src="images/osucoeLogo.png" alt="The Ohio State University College of Engineering" class="osu-logo">
+                </div>
+            </div>
+
+
+            
+            <div class="about-card name-card mobile-only">
+                <h2>Dylan Earl</h2><br>
+             <p>-Software Developer</p>
+             <p>-Computer Science and Engineering</p>
+             <p>-The Ohio State University</p>
+             <p>-Looking for internship experience</p>
+             <p>-Favorite Language is Java</p>
+             <p>-Eagle Scout</p>
+             
                 <div class="osu-logo-container">
                     <img src="images/osucoeLogo.png" alt="The Ohio State University College of Engineering" class="osu-logo">
                 </div>
@@ -106,10 +126,23 @@
 
 
             <!-- Right box (About Me) -->
-            <div class="about-card about-me-card">
+            <div class="about-card about-me-card desktop-only">
                 <h2>About Me</h2>
-                <p>I have a passion for hands-on problem solving and creativity, specifically through programming, robotics, 3D printing, and CAD. Outside of tech, I also enjoy outdoor activities like camping, kayaking, canoeing, rock climbing, sharpshooting, along with skeet shooting and cooking.</p>
-            </div>
+                <p>As a second-year student at Ohio State University majoring in Computer Science and Engineering, I am actively seeking a summer internship where I can apply my skills in programming, hardware integration, and problem-solving.
+                </br></br> Additionally, I am well-versed in additional software such as Git, Autodesk Inventor, Fusion 360, Onshape, and Arduino IDE. 
+                </br></br> Outside of tech, I also enjoy outdoor activities like camping, kayaking, canoeing, rock climbing, and sharpshooting.
+            </p>
+         </div>
+
+
+<!-- Right box (About Me) -->
+<div class="about-card about-me-card mobile-only">
+    <h2>About Me</h2>
+    <p>As a second-year student at Ohio State University majoring in Computer Science and Engineering, I am actively seeking a summer internship where I can apply my skills in programming, hardware integration, and problem-solving.
+    </br></br> Additionally, I am well-versed in additional software such as Git, Autodesk Inventor, Fusion 360, Onshape, and Arduino IDE.
+</p>
+</div>
+
 
                <!-- Mobile clubs box -->
                <div class="about-card clubs-card-mobile mobile-only">
@@ -134,9 +167,8 @@
                 <!-- About my Eagle Scout -->
                 <div class="about-card eagle-card">
                     <div class="eagle-icon">
-                        <img src="images/eagleScoutIcon.png" alt="Eagle Scout" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2230%22 height=%2230%22 viewBox=%220 0 24 24%22><circle cx=%2212%22 cy=%2212%22 r=%2210%22 fill=%22none%22 stroke=%22white%22 stroke-width=%222%22/></svg>';">
+                        <img src="images/eagleScoutLogo.png" alt="Eagle Scout"width="350%" >
                     </div>
-                    <p>About my Eagle Project</p>
                 </div>
             </div>
         </div>
@@ -194,7 +226,9 @@
                             <span class="project-icon"><img src="images/htmlLogo.png" alt="HTML" class="tech-logo"></span>
                         </span>
                     </div>
-                    <p>Project 1 Sample Description. This is my first project showcasing my skills in web development. It includes responsive design and interactive elements.</p>
+                    <div class="project-description desktop-only">
+                        <p>Project 1 Sample Description. This is my first project showcasing my skills in web development. It includes responsive design and interactive elements.</p>
+                    </div>
                 </div>
             </div>
             
@@ -208,7 +242,9 @@
                             <span class="project-icon"><img src="images/htmlLogo.png" alt="HTML" class="tech-logo"></span>
                         </span>
                     </div>
+                    <div class="project-description desktop-only">
                     <p>Project 2 Sample Description. Blah blah blah blah blah blah blah blah Blah blah blah blah blah blah blah blah.</p>
+                </div>
                 </div>
             </div>
             
@@ -222,7 +258,9 @@
                             <span class="project-icon"><img src="images/htmlLogo.png" alt="HTML" class="tech-logo"></span>
                         </span>
                     </div>
+                    <div class="project-description desktop-only">
                     <p>Project 3 Sample Description. An Arduino-based smart home system that monitors temperature, humidity, and light levels to automate home appliances.</p>
+                </div>
                 </div>
             </div>
             
@@ -236,7 +274,9 @@
                             <span class="project-icon"><img src="images/htmlLogo.png" alt="HTML" class="tech-logo"></span>
                         </span>
                     </div>
+                    <div class="project-description desktop-only">
                     <p>Project 4 Sample Description. A machine learning model that analyzes social media sentiment to predict market trends for small businesses.</p>
+                </div>
                 </div>
             </div>
             
@@ -250,7 +290,9 @@
                             <span class="project-icon"><img src="images/htmlLogo.png" alt="HTML" class="tech-logo"></span>
                         </span>
                     </div>
+                    <div class="project-description desktop-only">
                     <p>Project 5 Sample Description. A 3D-printed robot arm controlled by custom software that can be programmed to perform repetitive tasks with precision.</p>
+               </div>
                 </div>
             </div>
             
