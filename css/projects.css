@@ -123,101 +123,165 @@
     transform: translateY(-50%) scale(1.1);
 }
 
-
-/* Mobile Projects Styles */
+.mobile-project-cards {
+    display: none;
+}
 
 @media only screen and (max-width: 768px) {
-    .projects-title {
-        margin-bottom: 15px;
-        text-align: center;
-    }
+
+    /*Skill icons mobile*/
     
     .mobile-skills {
-        margin-bottom: 30px;
+        padding: 15px;
+        border-radius: 10px;
+        margin: 10px;
     }
     
     .mobile-skills h2 {
+        color: white;
         text-align: center;
         margin-bottom: 15px;
     }
     
     .tech-icons-mobile {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
-        justify-content: center;
-        margin-bottom: 20px;
+        grid-template-columns: repeat(6, 1fr); /* 6 columns */
+        gap: 5px; /* Adjusted gap for more icons */
+        justify-items: center;
+        align-items: center;
     }
     
-    .tech-icon {
-        width: 100%;
-        height: auto;
-        aspect-ratio: 1/1;
-    }
-    
-    .projects-container {
-        width: 100%;
-        height: auto;
+    .tech-icons-mobile .tech-icon { /* Adjusted size to fit 6 columns */
+        background-color: rgba(255, 255, 255, 0.1); /* Slight background for each icon */
+        border-radius: 8px;
+        padding: 5px;
         display: flex;
         justify-content: center;
-        flex-wrap: nowrap;
-        position: relative;
+        align-items: center;
+        width: 50px; /* You might need to adjust width further depending on exact icon size and gap */
+        height: 50px; /* Reduced height */
     }
     
-    .project-card {
-        width: 85%;
-        height: 350px;
-        position: relative;
-        top: auto;
-        margin: 0 auto;
+    .tech-icons-mobile .tech-icon-img { /* Adjusted image size */
+        max-width: 30px;
+        max-height: 30px;
+        object-fit: contain;
     }
     
-    .project-card:not([data-index="0"]) {
-        display: none;
-    }
     
-    .project-header {
-        height: 30%;
-    }
+        /*PROJECT CAROUSEL MOBILE - (Keep the rest of the mobile styles below)*/
+        .mobile-projects-container {
+            position: relative;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 0 20px; 
+            transform: translateY(10%);
+        }
     
-    .project-body {
-        height: 70%;
-    }
+        .mobile-project-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            max-width: 100%;
+            margin: 0 auto;
+            height: 400px; /* Increased overall height */
+        }
     
-    .arrow-nav {
-        top: 50%;
-        transform: translateY(-50%);
-        width: 30px;
-        height: 30px;
-        font-size: 1.2rem;
-    }
+        .mobile-project-header {
+            height: 50px; /* Keeps the small colored top */
+            width: 100%;
+        }
     
-    .arrow-left {
-        left: 0;
-    }
+        .mobile-project-header.blue { background-color: #3498db; }
+        .mobile-project-header.green { background-color: #2ecc71; }
+        .mobile-project-header.orange { background-color: #e67e22; }
+        .mobile-project-header.purple { background-color: #9b59b6; }
+        .mobile-project-header.red { background-color: #e74c3c; }
     
-    .arrow-right {
-        right: 0;
-    }
-}
+        .mobile-project-body {
+            padding: 20px;
+            height: calc(100% - 50px); /* Subtract header height */
+            display: flex;
+            flex-direction: column;
+        }
+    
+        .mobile-project-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+    
+        .mobile-project-icons {
+            display: flex;
+            gap: 10px;
+        }
+    
+        .mobile-project-icons img {
+            width: 35px;
+            height: 35px;
+        }
+    
+        .mobile-project-description {
+            color: #666;
+            font-size: 1em;
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+    
+        .mobile-arrow-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+           
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+        }
+    
+        .mobile-arrow-left {
+            transform: translateX(-80%);
+            left: 0;
+        }
+    
+        .mobile-arrow-right {
+            transform: translateX(80%);
+            right: 0;
+        }
 
-/* Add this to your projects.css file or mobile-projects.css */
-@media only screen and (max-width: 768px) {
-    .mobile-skills {
-        display: block;
-        margin-bottom: 30px;
+
+        .mobile-arrow-nav {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%; /* Make arrows circular */
+            background-color: rgba(0, 0, 0, 0.2); /* Semi-transparent background */
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 24px;
+            user-select: none;
+        }
+        .mobile-arrow-left {
+            left: 0; /* Offset from the left */
+        }
+        
+        .mobile-arrow-right {
+            right: 0; /* Offset from the right */
+        }
+        
+        /* Hover effects */
+        .mobile-arrow-nav:hover {
+            background-color: rgba(0, 0, 0, 0.5); /* Darken on hover */
+            
+        }
     }
-    
-    .tech-icons-mobile {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 10px;
-        justify-content: center;
-        margin-bottom: 20px;
-    }
-    
-    /* Hide the tech icons in the About section on mobile */
-    #section2 .tech-icons {
-        display: none;
-    }
-}

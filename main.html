@@ -25,16 +25,27 @@
     <script src="js/contactForm.js"></script>
     <script src="js/carousel.js"></script>
     <script src="js/mobileLaptopAnimation.js"></script>
+    <script src="js/mobileCarousel.js"></script>
 </head>
 <body>
     <!-- Desktop Navigation -->
     <div class="fixed-nav desktop-only">
         <div class="nav-container">
-            <a href="#section1" class="nav-link">Home</a>
-            <a href="#section2" class="nav-link">About</a>
-            <a href="#section3" class="nav-link">Projects</a>
-            <a href="#section4" class="nav-link">Experience</a>
-            <a href="#section5" class="nav-link">Contact</a>
+            <a href="#section1" class="nav-link">
+               Home
+            </a>
+            <a href="#section2" class="nav-link">
+                About
+            </a>
+            <a href="#section3" class="nav-link">
+                <img class="mobile-only" src="images/code.png" alt="Projects Icon"> Projects
+            </a>
+            <a href="#section4" class="nav-link">
+                <img class="mobile-only" src="images/tie.png" alt="Jobs Icon"> Experience
+            </a>
+            <a href="#section5" class="nav-link">
+                <img class="mobile-only" src="images/message.png" alt="Message Icon"> Contact
+            </a>
         </div>
     </div>
     
@@ -42,19 +53,19 @@
     <div class="mobile-nav mobile-only">
         <div class="mobile-nav-container">
             <a href="#section1" class="mobile-nav-link">
-                <img src="images/home-icon.png" alt="Home" class="mobile-nav-icon">
+                <img class="mobile-nav-icon" src="images/home.png" width="45px"alt="Home">
             </a>
             <a href="#section2" class="mobile-nav-link">
-                <img src="images/about-icon.png" alt="About" class="mobile-nav-icon">
+                <img class="mobile-nav-icon" src="images/info.png" width="45px" alt="About">
             </a>
             <a href="#section3" class="mobile-nav-link">
-                <img src="images/projects-icon.png" alt="Projects" class="mobile-nav-icon">
+                <img class="mobile-nav-icon" src="images/code.png" width="45px"alt="Projects">
             </a>
             <a href="#section4" class="mobile-nav-link">
-                <img src="images/experience-icon.png" alt="Experience" class="mobile-nav-icon">
+                <img class="mobile-nav-icon" src="images/tie.png" width="45px"alt="Experience">
             </a>
             <a href="#section5" class="mobile-nav-link">
-                <img src="images/contact-icon.png" alt="Contact" class="mobile-nav-icon">
+                <img class="mobile-nav-icon" src="images/message.png" width="45px"alt="Contact">
             </a>
         </div>
     </div>
@@ -210,16 +221,12 @@
             </div>
         </div>
         
-       
-
-        
-        
-        <div class="projects-container">
+        <div class="projects-container desktop-only">
             <div class="project-card" data-index="0">
                 <div class="project-header blue"></div>
                 <div class="project-body">
                     <div class="project-title">
-                        Project 1
+                        Project 1 Test
                         <span>
                             <span class="project-icon"><img src="images/javaLogo.png" alt="Java" class="tech-logo"></span>
                             <span class="project-icon"><img src="images/htmlLogo.png" alt="HTML" class="tech-logo"></span>
@@ -298,6 +305,27 @@
             <div class="arrow-nav arrow-left">←</div>
             <div class="arrow-nav arrow-right">→</div>
         </div>
+<div class="mobile-only"><h2>Projects</h2></div>
+        <div class="mobile-project-cards mobile-only" id="mobile-project-data">
+            <div class="mobile-project-card-data" data-header="blue" data-title="Project 1 Test" data-icons='["images/javaLogo.png", "images/htmlLogo.png"]'>
+                Project 1 Sample Description. This is my first project showcasing my skills in web development. It includes responsive design and interactive elements.
+            </div>
+            <div class="mobile-project-card-data" data-header="green" data-title="Project 2" data-icons='["images/javaLogo.png", "images/htmlLogo.png"]'>
+                Project 2 Sample Description. Blah blah blah blah blah blah blah blah Blah blah blah blah blah blah blah blah.
+            </div>
+            <div class="mobile-project-card-data" data-header="orange" data-title="Project 3" data-icons='["images/javaLogo.png", "images/htmlLogo.png"]'>
+                Project 3 Sample Description. An Arduino-based smart home system that monitors temperature, humidity, and light levels to automate home appliances.
+            </div>
+            <div class="mobile-project-card-data" data-header="purple" data-title="Project 4" data-icons='["images/javaLogo.png", "images/htmlLogo.png"]'>
+                Project 4 Sample Description. A machine learning model that analyzes social media sentiment to predict market trends for small businesses.
+            </div>
+            <div class="mobile-project-card-data" data-header="red" data-title="Project 5" data-icons='["images/javaLogo.png", "images/htmlLogo.png"]'>
+                Project 5 Sample Description. A 3D-printed robot arm controlled by custom software that can be programmed to perform repetitive tasks with precision.
+            </div>
+        </div>
+
+
+
     </div>
     
     <!-- Experience Section -->

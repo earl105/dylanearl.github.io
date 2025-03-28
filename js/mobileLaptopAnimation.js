@@ -314,7 +314,7 @@ function initMobileLaptop() {
     window.addEventListener('resize', function() {
         if (window.innerWidth <= 768) {
             const containerWidth = container.clientWidth;
-            const containerHeight = containerWidth * 0.75;
+            const containerHeight = containerWidth * 1.5;
             
             camera.aspect = containerWidth / containerHeight;
             camera.updateProjectionMatrix();
